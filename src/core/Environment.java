@@ -1,4 +1,4 @@
-package core.framework;
+package core;
 
 import java.util.Hashtable;
 import java.io.*;

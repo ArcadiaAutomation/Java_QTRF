@@ -1,4 +1,4 @@
-package core.framework;
+package core;
 
 import java.io.BufferedWriter;
 import java.io.File;

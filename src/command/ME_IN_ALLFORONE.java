@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 
-import core.framework.Config;
-import core.framework.Environment;
-import core.framework.Iteration;
-import core.framework.LogManager;
+import core.Config;
+import core.Environment;
+import core.Iteration;
+import core.LogManager;
 
 
 

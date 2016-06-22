@@ -9,10 +9,10 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import core.framework.Config;
-import core.framework.Environment;
-import core.framework.Iteration;
-import core.framework.LogManager;
+import core.Config;
+import core.Environment;
+import core.Iteration;
+import core.LogManager;
 import io.appium.java_client.android.AndroidDriver;
 
 public class MOBILE extends Utility{

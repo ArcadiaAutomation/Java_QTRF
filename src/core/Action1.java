@@ -1,4 +1,4 @@
-package core.framework;
+package core;
 
 import org.junit.runner.JUnitCore;
 

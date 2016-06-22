@@ -7,10 +7,10 @@ import java.util.Date;
 
 import org.openqa.selenium.By;
 
-import core.framework.Config;
-import core.framework.Environment;
-import core.framework.Iteration;
-import core.framework.LogManager;
+import core.Config;
+import core.Environment;
+import core.Iteration;
+import core.LogManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;

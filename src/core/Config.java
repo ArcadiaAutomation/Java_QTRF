@@ -1,4 +1,4 @@
-package core.framework;
+package core;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
