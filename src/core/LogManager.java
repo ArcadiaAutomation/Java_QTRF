@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import command.*;
+import com.mobile.application.*;
 
 public class LogManager extends Miscellaneous{
 

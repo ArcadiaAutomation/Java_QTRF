@@ -2,7 +2,7 @@ package core;
 
 import java.util.ArrayList;
 
-import command.*;
+import com.mobile.application.*;
 
 public class Executor {
 	

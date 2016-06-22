@@ -1,4 +1,4 @@
-package command;
+package com.mobile.application;
 
 import io.appium.java_client.android.AndroidDriver;
 

@@ -6,7 +6,8 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import command.*;
+import com.mobile.application.*;
+
 import io.appium.java_client.android.AndroidDriver;
 
 public class ForTestOnly {
