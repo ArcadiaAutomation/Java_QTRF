@@ -1,4 +1,4 @@
-package com.mobile.application;
+package com.qtrf.mobile.application;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

@@ -1,8 +1,8 @@
-package core;
+package com.qtrf.core;
 
 import java.util.ArrayList;
 
-import com.mobile.application.*;
+import com.qtrf.mobile.application.*;
 
 public class Executor {
 	

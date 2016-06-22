@@ -1,4 +1,4 @@
-package com.mobile.application;
+package com.qtrf.mobile.application;
 
 import io.appium.java_client.android.AndroidKeyCode;
 
@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 
-import core.Config;
-import core.Environment;
-import core.Iteration;
-import core.LogManager;
+import com.qtrf.core.Config;
+import com.qtrf.core.Environment;
+import com.qtrf.core.Iteration;
+import com.qtrf.core.LogManager;
 
 public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 

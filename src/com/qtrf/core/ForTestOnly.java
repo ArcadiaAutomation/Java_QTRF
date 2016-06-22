@@ -1,4 +1,4 @@
-package core;
+package com.qtrf.core;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import com.mobile.application.*;
+import com.qtrf.mobile.application.*;
 
 import io.appium.java_client.android.AndroidDriver;
 

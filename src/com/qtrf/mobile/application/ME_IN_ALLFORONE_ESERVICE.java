@@ -1,11 +1,11 @@
-package com.mobile.application;
+package com.qtrf.mobile.application;
 
 import java.util.ArrayList;
 
-import core.Config;
-import core.Environment;
-import core.Iteration;
-import core.LogManager;
+import com.qtrf.core.Config;
+import com.qtrf.core.Environment;
+import com.qtrf.core.Iteration;
+import com.qtrf.core.LogManager;
 
 
 

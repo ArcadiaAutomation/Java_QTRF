@@ -1,4 +1,4 @@
-package core;
+package com.qtrf.core;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.mobile.application.*;
+import com.qtrf.mobile.application.*;
 
 public class LogManager extends Miscellaneous{
 

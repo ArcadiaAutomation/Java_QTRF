@@ -1,4 +1,4 @@
-package com.mobile.application;
+package com.qtrf.mobile.application;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,10 +9,11 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import core.Config;
-import core.Environment;
-import core.Iteration;
-import core.LogManager;
+import com.qtrf.core.Config;
+import com.qtrf.core.Environment;
+import com.qtrf.core.Iteration;
+import com.qtrf.core.LogManager;
+
 import io.appium.java_client.android.AndroidDriver;
 
 public class MOBILE extends Utility{
