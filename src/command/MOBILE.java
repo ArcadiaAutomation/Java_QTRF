@@ -1,9 +1,4 @@
-package Command;
-
-import CoreFramework.LogManager;
-import CoreFramework.Environment;
-import CoreFramework.Config;
-import CoreFramework.Iteration;
+package command;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +9,10 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import CoreFramework.Environment;
+import core.framework.Config;
+import core.framework.Environment;
+import core.framework.Iteration;
+import core.framework.LogManager;
 import io.appium.java_client.android.AndroidDriver;
 
 public class MOBILE extends Utility{

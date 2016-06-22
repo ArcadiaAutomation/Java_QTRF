@@ -1,4 +1,4 @@
-package CoreFramework;
+package core.framework;
 
 import java.util.ArrayList;
 

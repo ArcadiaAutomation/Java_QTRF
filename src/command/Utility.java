@@ -1,16 +1,16 @@
-package Command;
+package command;
 
 import io.appium.java_client.android.AndroidDriver;
-
-import CoreFramework.LogManager;
-import CoreFramework.Environment;
-import CoreFramework.Config;
-import CoreFramework.Iteration;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.openqa.selenium.By;
+
+import core.framework.Config;
+import core.framework.Environment;
+import core.framework.Iteration;
+import core.framework.LogManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;

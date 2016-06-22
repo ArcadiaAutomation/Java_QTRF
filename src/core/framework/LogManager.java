@@ -1,4 +1,4 @@
-package CoreFramework;
+package core.framework;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import Command.*;
+import command.*;
 
 public class LogManager extends Miscellaneous{
 

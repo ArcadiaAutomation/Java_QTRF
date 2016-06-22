@@ -1,8 +1,8 @@
-package CoreFramework;
+package core.framework;
 
 import java.util.ArrayList;
 
-import Command.*;
+import command.*;
 
 public class Executor {
 	

@@ -1,4 +1,4 @@
-package CoreFramework;
+package core.framework;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Hashtable;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import Command.*;
+import command.*;
 import io.appium.java_client.android.AndroidDriver;
 
 public class ForTestOnly {

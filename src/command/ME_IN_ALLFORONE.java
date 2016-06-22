@@ -1,14 +1,15 @@
-package Command;
+package command;
 
-import CoreFramework.LogManager;
 import io.appium.java_client.android.AndroidKeyCode;
-import CoreFramework.Environment;
-import CoreFramework.Config;
-import CoreFramework.Iteration;
 
 import java.util.ArrayList;
 
 import org.openqa.selenium.By;
+
+import core.framework.Config;
+import core.framework.Environment;
+import core.framework.Iteration;
+import core.framework.LogManager;
 
 
 
