@@ -16,7 +16,7 @@ import com.qtrf.core.LogManager;
 
 import io.appium.java_client.android.AndroidDriver;
 
-public class MOBILE extends Utility{
+public class Mobile extends Utility{
 
 	static int count=-1;
 	static Hashtable<String, Integer> udidMap= new Hashtable<String, Integer>();

@@ -52,7 +52,7 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static void closeApp()
     {
-    	MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
-    	MOBILE.driverList.get(udid).findElement(By.name("Yes")).click();
+    	Mobile.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	Mobile.driverList.get(udid).findElement(By.name("Yes")).click();
     }
 }

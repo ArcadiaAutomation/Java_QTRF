@@ -53,15 +53,15 @@ public class Utility extends Miscellaneous {
 		boolean result=false;
 		switch(findOption)
 		{
-		case "id" : result=(!MOBILE.driverList.get(MOBILE.udidMap.get(udid)).findElementsById(path).isEmpty());
+		case "id" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsById(path).isEmpty());
 		break;
-		case "xpath" : result=(!MOBILE.driverList.get(MOBILE.udidMap.get(udid)).findElementsByXPath(path).isEmpty());
+		case "xpath" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByXPath(path).isEmpty());
 		break;
-		case "text" : result=(!MOBILE.driverList.get(MOBILE.udidMap.get(udid)).findElementsByName(path).isEmpty());
+		case "text" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByName(path).isEmpty());
 		break;
-		case "class" : result=(!MOBILE.driverList.get(MOBILE.udidMap.get(udid)).findElementsByClassName(path).isEmpty());
+		case "class" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByClassName(path).isEmpty());
 		break;
-		case "css" : result=(!MOBILE.driverList.get(MOBILE.udidMap.get(udid)).findElementsByCssSelector(path).isEmpty());	
+		case "css" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByCssSelector(path).isEmpty());	
 		default: result=false;
 		}
 		return result;
@@ -76,17 +76,17 @@ public class Utility extends Miscellaneous {
 	{
 		
 		String udid = getUdid(testStep.get(2));
-		int index = MOBILE.udidMap.get(udid);
+		int index = Mobile.udidMap.get(udid);
 		System.out.println("Start session number "+index);
 		
-		if (MOBILE.statusList.get(udid)==0)
+		if (Mobile.statusList.get(udid)==0)
 		{
-			MOBILE.capabilitiesList.get(udid).setCapability("appPackage", appPackage); 
-			MOBILE.capabilitiesList.get(udid).setCapability("appActivity", appActivity);	
+			Mobile.capabilitiesList.get(udid).setCapability("appPackage", appPackage); 
+			Mobile.capabilitiesList.get(udid).setCapability("appActivity", appActivity);	
 			
 			if (appWaitActivity!="any")
 			{
-				MOBILE.capabilitiesList.get(udid).setCapability("appWaitActivity", appWaitActivity);	
+				Mobile.capabilitiesList.get(udid).setCapability("appWaitActivity", appWaitActivity);	
 			}
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
@@ -94,17 +94,17 @@ public class Utility extends Miscellaneous {
 	    wait(5);
 	    
 	    try {
-	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
+	    	Mobile.driverList.put(udid, new AndroidDriver(new URL(url), Mobile.capabilitiesList.get(udid)));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-	    MOBILE.statusList.put(udid, 1);
-	    MOBILE.driverList.get(udid).launchApp();
+	    Mobile.statusList.put(udid, 1);
+	    Mobile.driverList.get(udid).launchApp();
 	    System.out.println("Start appium session number : "+index);
 		}
 		else
 		{
-			MOBILE.driverList.get(udid).startActivity(appPackage, appActivity);
+			Mobile.driverList.get(udid).startActivity(appPackage, appActivity);
 		}
 	}
 	

@@ -18,7 +18,7 @@ public class Executor {
 	{
 		switch(testStep.get(1).toUpperCase())
 		{
-		case "MOBILE" : MOBILE.actionMapper(testStep);
+		case "MOBILE" : Mobile.actionMapper(testStep);
 		break;
 		case "ME_IN_ALLFORONE" : ME_IN_ALLFORONE.actionMapper(testStep);
 		break;		
