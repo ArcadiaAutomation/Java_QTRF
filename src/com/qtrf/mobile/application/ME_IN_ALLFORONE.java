@@ -27,11 +27,29 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	
     	switch(testStep.get(3).toUpperCase())
     	{
-    	case "OPENAPP" : openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
+    	case "OPENAPP" : 
+    	try {
+    	openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
+		LogManager.addStep("openApp", "Switch application", "Switch application", "pass", "");
+		} catch (Exception e) {
+			LogManager.addStep("openApp", "Switch application", e.toString(), "fail", "");	
+		}
     	break;
-    	case "OPENSUBAPP" : openSubApp(testStep);
+    	case "OPENSUBAPP" : 
+    	try {
+    	openSubApp(testStep);
+		LogManager.addStep("openSubApp", "Open sub application", "Open sub application", "pass", "");
+		} catch (Exception e) {
+			LogManager.addStep("openSubApp", "Open sub application", e.toString(), "fail", "");	
+		}
     	break;
-    	case "COMPONENTISEXIST" : isComponentExist(testStep);
+    	case "COMPONENTISEXIST" : 
+    	try{
+    	isComponentExist(testStep);
+		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : true", "pass", "");
+		} catch (Exception e) {
+			LogManager.addStep("ComponentIsExist", "Verify component : true", e.toString(), "fail", "");	
+		}    		
     	break;
     	case "COMPONENTCLICK" : clickComponent(testStep);
     	break;
@@ -49,12 +67,12 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     {
     	if(Utility.isComponentExist(udid, table.get(parameter[0]), typeTable.get(parameter[0]), parameter[1]))
     	{
-    		System.out.println("Component exist");
+    		System.out.println("Verify component : true");
     		return true;
     	}
     	else
     	{
-    		System.out.println("Component not exist");
+    		System.out.println("Verify component : false");
     		return false;
     	}
     }
@@ -83,7 +101,6 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	break;
     	default:System.out.println("Sub application not found");
     	}
-    	cloneTestStep(testStep);
     }
     
     private static void eService(ArrayList<String> testStep)

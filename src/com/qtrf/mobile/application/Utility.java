@@ -51,6 +51,8 @@ public class Utility extends Miscellaneous {
 	public static boolean isComponentExist(String udid,String path,String findOption,String value)
 	{
 		boolean result=false;
+		if (Boolean.valueOf(value))
+		{	
 		switch(findOption)
 		{
 		case "id" : result=(!MOBILE.driverList.get(udid).findElementsById(path).isEmpty());
@@ -64,7 +66,12 @@ public class Utility extends Miscellaneous {
 		case "css" : result=(!MOBILE.driverList.get(udid).findElementsByCssSelector(path).isEmpty());	
 		default: result=false;
 		}
-		return result;
+		 	return result;
+		}
+		else
+		{
+			return !result;
+		}
 	}
 	
 	public static void clickComponent(String udid,String path,String findOption)
@@ -162,6 +169,7 @@ public class Utility extends Miscellaneous {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
+	    
 	    MOBILE.statusList.put(udid, 1);
 	    MOBILE.driverList.get(udid).launchApp();
 	    System.out.println("Start appium session number : "+index);
