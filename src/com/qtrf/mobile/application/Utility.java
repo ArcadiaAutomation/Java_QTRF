@@ -67,7 +67,7 @@ public class Utility extends Miscellaneous {
 		return result;
 	}
 	
-	public static void clickComponent(String udid,String path,String findOption,String value)
+	public static void clickComponent(String udid,String path,String findOption)
 	{
 		switch(findOption)
 		{
@@ -89,13 +89,60 @@ public class Utility extends Miscellaneous {
 		return Config.table.get("adb:RUN_"+parameter.charAt(parameter.length()-1));
 	}
 	
+	public static void setText(String udid,String path,String findOption,String text)
+	{
+		switch(findOption)
+		{
+		case "id" : MOBILE.driverList.get(udid).findElementById(path).sendKeys(text);
+		MOBILE.driverList.get(udid).hideKeyboard();
+		wait(2);
+		break;
+		case "xpath" : MOBILE.driverList.get(udid).findElementByXPath(path).sendKeys(text);
+		MOBILE.driverList.get(udid).hideKeyboard();
+		wait(2);
+		break;
+		case "text" : MOBILE.driverList.get(udid).findElementByName(path).sendKeys(text);
+		MOBILE.driverList.get(udid).hideKeyboard();
+		wait(2);
+		break;
+		case "class" : MOBILE.driverList.get(udid).findElementByClassName(path).sendKeys(text);
+		MOBILE.driverList.get(udid).hideKeyboard();
+		wait(2);
+		break;
+		case "css" : MOBILE.driverList.get(udid).findElementByCssSelector(path).sendKeys(text);	
+		MOBILE.driverList.get(udid).hideKeyboard();
+		wait(2);
+		break;
+		default: System.out.println("Element not found");
+		}
+	}
+	
+	public static ArrayList<String> cloneTestStep(String application,String machine,String action,String parameter,String onErrorResumeNext,String remark)
+	{
+		ArrayList<String> virtualTestStep = new ArrayList<String>();
+		virtualTestStep.add("");
+		virtualTestStep.add(application);
+		virtualTestStep.add(machine);
+		virtualTestStep.add(action);
+		virtualTestStep.add(parameter);
+		virtualTestStep.add(onErrorResumeNext);
+		virtualTestStep.add(remark);
+		return virtualTestStep;
+	}
+	
+	public static ArrayList<String> cloneTestStep(ArrayList<String> testStep)
+	{
+		ArrayList<String> virtualTestStep = new ArrayList<String>();
+		virtualTestStep.addAll(testStep);
+		return virtualTestStep;
+	}
+
 	public static void openApp(ArrayList<String> testStep,String appPackage,String appActivity,String appWaitActivity)
 	{
 		
 		String udid = getUdid(testStep.get(2));
 		int index = MOBILE.udidMap.get(udid);
-		System.out.println("Start session number "+index);
-		
+
 		if (MOBILE.statusList.get(udid)==0)
 		{
 			MOBILE.capabilitiesList.get(udid).setCapability("appPackage", appPackage); 
