@@ -155,7 +155,7 @@ public class Utility extends Miscellaneous {
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(10);
+	    wait(2);
 	    
 	    try {
 	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
