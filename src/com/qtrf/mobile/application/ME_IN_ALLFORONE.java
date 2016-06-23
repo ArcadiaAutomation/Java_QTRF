@@ -72,7 +72,7 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static void setOTP(ArrayList<String> testStep)
     {
-    	Utility.setText(udid, table.get(parameter[0]), typeTable.get(parameter[0]), ME_MOOD.otp);
+    	Utility.setText(udid, table.get(parameter[0]), typeTable.get(parameter[0]), ME_MOOD.otpNumber);
     }
     
     private static void openSubApp(ArrayList<String> testStep)

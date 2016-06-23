@@ -58,7 +58,7 @@ public class ME_MOOD extends ME_MOOD_Repository {
     
     private static void clickComponent(ArrayList<String> testStep)
     {
-    	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]), parameter[1]);
+    	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
     }
     
     private static String selectMessage(int index)
