@@ -21,9 +21,9 @@ public class DriverManager {
 		TestCase.readTestCase(Environment.getValue("testCasePath"),Environment.getValue("testCaseSheet"));
 		Config.readConfig(Environment.getValue("configPath"),Environment.getValue("configSheet"));
 		
-		if (Iteration.isIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet")))
+		if (Iteration1.isIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet")))
 		{
-			Iteration.readIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet"));
+			Iteration1.readIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet"));
 		}	
 		
 		Executor.run();

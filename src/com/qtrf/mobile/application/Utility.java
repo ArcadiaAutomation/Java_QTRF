@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Iteration;
+import com.qtrf.core.Iteration1;
 import com.qtrf.core.LogManager;
 
 import java.net.MalformedURLException;

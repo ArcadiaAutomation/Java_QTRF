@@ -11,7 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Iteration;
+import com.qtrf.core.Iteration1;
 import com.qtrf.core.LogManager;
 
 import io.appium.java_client.android.AndroidDriver;

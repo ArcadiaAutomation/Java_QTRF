@@ -2,7 +2,7 @@ package com.qtrf.core;
 
 import java.util.ArrayList;
 
-public class Iteration {
+public class Iteration1 {
 
 	private static ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
 	
