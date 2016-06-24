@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Iteration1;
+import com.qtrf.core.Iteration;
 import com.qtrf.core.LogManager;
 
 import java.net.MalformedURLException;
@@ -53,18 +53,35 @@ public class Utility extends Miscellaneous {
 		boolean result=false;
 		switch(findOption)
 		{
-		case "id" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsById(path).isEmpty());
+		case "id" : result=(!MOBILE.driverList.get(udid).findElementsById(path).isEmpty());
 		break;
-		case "xpath" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByXPath(path).isEmpty());
+		case "xpath" : result=(!MOBILE.driverList.get(udid).findElementsByXPath(path).isEmpty());
 		break;
-		case "text" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByName(path).isEmpty());
+		case "text" : result=(!MOBILE.driverList.get(udid).findElementsByName(path).isEmpty());
 		break;
-		case "class" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByClassName(path).isEmpty());
+		case "class" : result=(!MOBILE.driverList.get(udid).findElementsByClassName(path).isEmpty());
 		break;
-		case "css" : result=(!Mobile.driverList.get(Mobile.udidMap.get(udid)).findElementsByCssSelector(path).isEmpty());	
+		case "css" : result=(!MOBILE.driverList.get(udid).findElementsByCssSelector(path).isEmpty());	
 		default: result=false;
 		}
 		return result;
+	}
+	
+	public static void clickComponent(String udid,String path,String findOption,String value)
+	{
+		switch(findOption)
+		{
+		case "id" : MOBILE.driverList.get(udid).findElementById(path).click();
+		break;
+		case "xpath" : MOBILE.driverList.get(udid).findElementByXPath(path).click();
+		break;
+		case "text" : MOBILE.driverList.get(udid).findElementByName(path).click();
+		break;
+		case "class" : MOBILE.driverList.get(udid).findElementByClassName(path).click();
+		break;
+		case "css" : MOBILE.driverList.get(udid).findElementByCssSelector(path).click();	
+		default: System.out.println("Element not found");
+		}
 	}
 	
 	public static String getUdid(String parameter)
@@ -76,35 +93,35 @@ public class Utility extends Miscellaneous {
 	{
 		
 		String udid = getUdid(testStep.get(2));
-		int index = Mobile.udidMap.get(udid);
+		int index = MOBILE.udidMap.get(udid);
 		System.out.println("Start session number "+index);
 		
-		if (Mobile.statusList.get(udid)==0)
+		if (MOBILE.statusList.get(udid)==0)
 		{
-			Mobile.capabilitiesList.get(udid).setCapability("appPackage", appPackage); 
-			Mobile.capabilitiesList.get(udid).setCapability("appActivity", appActivity);	
+			MOBILE.capabilitiesList.get(udid).setCapability("appPackage", appPackage); 
+			MOBILE.capabilitiesList.get(udid).setCapability("appActivity", appActivity);	
 			
 			if (appWaitActivity!="any")
 			{
-				Mobile.capabilitiesList.get(udid).setCapability("appWaitActivity", appWaitActivity);	
+				MOBILE.capabilitiesList.get(udid).setCapability("appWaitActivity", appWaitActivity);	
 			}
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(5);
+	    wait(10);
 	    
 	    try {
-	    	Mobile.driverList.put(udid, new AndroidDriver(new URL(url), Mobile.capabilitiesList.get(udid)));
+	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-	    Mobile.statusList.put(udid, 1);
-	    Mobile.driverList.get(udid).launchApp();
+	    MOBILE.statusList.put(udid, 1);
+	    MOBILE.driverList.get(udid).launchApp();
 	    System.out.println("Start appium session number : "+index);
 		}
 		else
 		{
-			Mobile.driverList.get(udid).startActivity(appPackage, appActivity);
+			MOBILE.driverList.get(udid).startActivity(appPackage, appActivity);
 		}
 	}
 	

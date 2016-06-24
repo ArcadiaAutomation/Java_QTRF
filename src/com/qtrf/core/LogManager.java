@@ -60,7 +60,7 @@ public class LogManager extends Miscellaneous{
 		reportLog.add("<th width=\"27%\">Actual</th>");
 		reportLog.add("<th width=\"10%\">Result</th>");
 		reportLog.add("<th width=\"9%\">CaptureScreen</th>");
-		reportLog.add("<\tr>");
+		reportLog.add("</tr>");
 	}
 	
 	public static void addStep(String action,String expected,String actual,String result,String captureScreen)
@@ -103,6 +103,12 @@ public class LogManager extends Miscellaneous{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		}
+		try {
+			buffer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

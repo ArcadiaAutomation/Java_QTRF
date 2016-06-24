@@ -18,18 +18,20 @@ public class Executor {
 	{
 		switch(testStep.get(1).toUpperCase())
 		{
-		case "MOBILE" : Mobile.actionMapper(testStep);
+		case "MOBILE" : MOBILE.actionMapper(testStep);
 		break;
 		case "ME_IN_ALLFORONE" : ME_IN_ALLFORONE.actionMapper(testStep);
 		break;		
 		case "ME_IN_ALLFORONE_ESERVICE" : ME_IN_ALLFORONE_ESERVICE.actionMapper(testStep);
 		break;
-		case "ME_MOOD" : System.out.println(testStep);
+		case "ME_MOOD" : ME_MOOD.actionMapper(testStep);
 		break;
 		case "UTILITY" : Utility.actionMapper(testStep);
 		break;		
 		case "ME_WIFICONECT" : ME_WIFICONNECT.actionMapper(testStep);
 		break;		
+		case "ESRVICEWEB"	: EServiceWeb.actionMapper(testStep);
+		break;
 		default : System.out.println("Command not found");
 		}
 	}

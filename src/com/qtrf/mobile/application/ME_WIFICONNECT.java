@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Iteration1;
+import com.qtrf.core.Iteration;
 import com.qtrf.core.LogManager;
 
 public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
@@ -27,18 +27,18 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     	case "OPENAPP" : openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
     	break;
     	case "SETENABLEWIFI" : 
-    		if (Mobile.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("false"))
-    		Mobile.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
+    		if (MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("false"))
+    		MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
     	break;
     	case "WAITUNTIL" : waitUntil();
     	break;
     	case "VERIFYWIFI" : System.out.println("verify wifi : "+verifyWifi());
     	break;
     	case "SETDISABLEWIFI" : 
-    		if (Mobile.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("true"))
-    		Mobile.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
+    		if (MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("true"))
+    		MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
     	break;
-    	case "CLOSEAPP" : Mobile.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	case "CLOSEAPP" : MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
     	break;
     	default : System.out.println("Action not found");
     	}    			
@@ -47,7 +47,7 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 	public static void waitUntil()
 	{
 		wait(10);
-		while (!Mobile.driverList.get(udid).findElementsById(table.get("connecting")).isEmpty())
+		while (!MOBILE.driverList.get(udid).findElementsById(table.get("connecting")).isEmpty())
 		{
 			wait(1);
 		}
@@ -55,14 +55,14 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 	
 	public static boolean verifyWifi()
 	{
-		if (Mobile.driverList.get(udid).findElementsById(table.get("ssid")).isEmpty())
+		if (MOBILE.driverList.get(udid).findElementsById(table.get("ssid")).isEmpty())
 		{
 			System.out.println("Wifi not found");
 			return false;
 		}
 		else
 		{
-		if (!Mobile.driverList.get(udid).findElementsById(table.get("connected")).isEmpty())
+		if (!MOBILE.driverList.get(udid).findElementsById(table.get("connected")).isEmpty())
 		{
 			System.out.println(parameter[0]);
 			if (parameter[0].toUpperCase()=="ENABLE")
@@ -78,7 +78,7 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 		}
 		else
 		{
-			if (Mobile.driverList.get(udid).findElementsById(table.get("ssid")).get(0)=="@AIS_SMART")
+			if (MOBILE.driverList.get(udid).findElementsById(table.get("ssid")).get(0)=="@AIS_SMART")
 			{
 				System.out.println("THIS 3");
 				return true;

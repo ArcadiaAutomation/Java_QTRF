@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Iteration1;
+import com.qtrf.core.Iteration;
 import com.qtrf.core.LogManager;
 
 
@@ -52,7 +52,7 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static void closeApp()
     {
-    	Mobile.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
-    	Mobile.driverList.get(udid).findElement(By.name("Yes")).click();
+    	MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	MOBILE.driverList.get(udid).findElement(By.name("Yes")).click();
     }
 }

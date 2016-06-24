@@ -1,8 +1,9 @@
 package com.qtrf.mobile.application;
 
+
 import java.util.Hashtable;
 
-public class ME_WIFICONNECT_Repository extends Utility{
+public class EServiceWeb_Repository extends Utility{
 
 	public static Hashtable<String,String> table = new Hashtable<String,String>();
 	public static Hashtable<String,String> typeTable = new Hashtable<String,String>();
@@ -22,4 +23,3 @@ public class ME_WIFICONNECT_Repository extends Utility{
 	}
 	
 }
-

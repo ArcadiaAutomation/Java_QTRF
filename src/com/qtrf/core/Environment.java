@@ -6,7 +6,7 @@ import java.nio.*;
 
 public class Environment {
 	
-	public static Hashtable<String, String> table= new Hashtable<String, String>();
+	private static Hashtable<String, String> table= new Hashtable<String, String>();
 	
 	public static void setValue(String key,String value)
 	{
@@ -16,5 +16,5 @@ public class Environment {
 	public static String getValue (String key)
 	{
 		return table.get(key);
-	}	
+	}		
 }
