@@ -36,6 +36,8 @@ public class Executor {
 		break;		
 		case "ESRVICEWEB"	: EServiceWeb.actionMapper(testStep);
 		break;
+		case "ONENUMBERFORSERVICE" : OneNumberForPromotion.actionMapper(testStep);
+		break;
 		default : System.out.println("Command not found");
 		return false;
 		}

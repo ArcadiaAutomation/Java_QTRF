@@ -25,6 +25,9 @@ public class EServiceWeb extends EServiceWeb_Repository{
     	case "VERIFYLOGIN" :
     		VerifyLogin(parameter);
     		break;
+    	case "SELECTMENU" :
+    		SelctMenu(parameter);
+    		break;
     	default : WebCommon.actionMapper(testStep);
     	}
     }
@@ -53,5 +56,46 @@ public class EServiceWeb extends EServiceWeb_Repository{
 		WebCommon.driver.switchTo().frame(WebCommon.driver.findElement(By.id("MainIframe")));
 		LogManager.addStep("OpenEserviceWeb","eservice.ais.co.th/eServiceWeb","","pass","");
     }
-	
+    private static void SelctMenu(String[] parameter){
+    	String Menu = parameter[0];
+    	switch(Menu.toUpperCase()) {
+    	case "MAINPAGE" : 
+    		WebCommon.ClickElement("id","menu-37");
+    		LogManager.addStep("SelectMenu","MAINPAGE","","pass","");
+    		break;
+    	case "ONENUMBERFORPROMOTION" : 
+    		WebCommon.ClickElement("id","menu-85");
+    		LogManager.addStep("SelectMenu","ONENUMBERFORPROMOTION","","pass","");
+    		break;
+    	case "USAGEDETAILHISTORY" : 
+    		WebCommon.ClickElement("id","menu-86");
+    		LogManager.addStep("SelectMenu","USAGEDETAILHISTORY","","pass","");
+    		break;
+    	case "SWOPSERVICE" : 
+    		WebCommon.ClickElement("id","menu-226");
+    		LogManager.addStep("SelectMenu","SWOPSERVICE","","pass","");
+    		break;
+    	case "TOPUP/PAYMENT" : 
+    		WebCommon.ClickElement("id","menu-38");
+    		LogManager.addStep("SelectMenu","TOPUP/PAYMENT","","pass","");
+    		break;
+    	case "ONENUMBERFORSERVICE" : 
+    		WebCommon.ClickElement("id","menu-81");
+    		LogManager.addStep("SelectMenu","ONENUMBERFORSERVICE","","pass","");
+    		break;
+    	case "OTHERSERVICE" : 
+    		WebCommon.ClickElement("id","menu-51");
+    		LogManager.addStep("SelectMenu","OTHERSERVICE","","pass","");
+			break;
+    	case "YOURPERSONALINFORMATION" : 
+    		WebCommon.ClickElement("id","menu-27");
+    		LogManager.addStep("SelectMenu","YOURPERSONALINFORMATION","","pass","");
+			break;
+    	case "PRIVILEGES" : 
+    		WebCommon.ClickElement("id","menu-99");
+    		LogManager.addStep("SelectMenu","PRIVILEGES","","pass","");
+			break;
+    	default : System.out.println("Action not found");
+    	}
+    }
 }

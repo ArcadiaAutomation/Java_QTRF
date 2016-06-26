@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import com.qtrf.core.LogManager;
 
@@ -30,6 +31,9 @@ public class WebCommon {
 	    		break;
 	    	case "CLICKELEMENT" :
 	    		ClickElement(parameter[0],parameter[1]);
+	    		break;
+	    	case "SELECTDROPDOWN" :
+	    		SelectDropDown(parameter[0],parameter[1],parameter[2]);
 	    		break;
 	    	default : System.out.println("Action not found");
 	    	}
@@ -120,6 +124,41 @@ public class WebCommon {
 		public static void CloseBrowser() {
 			  driver.quit();
 			  LogManager.addStep("CloseBrowser","","","pass","");
+		}
+		public static void SelectDropDown(String type, String value, String text) {
+			Select dropdown ;
+	    	switch(type.toUpperCase()) {
+	    	case "ID" : 
+	    		dropdown = new Select(driver.findElement(By.id(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "NAME" : 
+	    		dropdown = new Select(driver.findElement(By.name(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "LINK TEXT" : 
+	    		dropdown = new Select(driver.findElement(By.linkText(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "TAG NAME" : 
+	    		dropdown = new Select(driver.findElement(By.tagName(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "CLASS" : 
+	    		dropdown = new Select(driver.findElement(By.className(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "CSS" : 
+	    		dropdown = new Select(driver.findElement(By.cssSelector(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	case "XPATH" : 
+	    		dropdown = new Select(driver.findElement(By.xpath(value)));
+	    		dropdown.selectByVisibleText(text);
+	    		break;
+	    	default : System.out.println("Action not found");
+	    		
+	    	}
 		}
 }
 
