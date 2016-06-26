@@ -36,6 +36,8 @@ public class ME_MOOD extends ME_MOOD_Repository {
     	break;
     	case "SELECTMESSAGE" : selectMessage(Integer.parseInt(parameter[0]));
     	break;
+    	case "VERIFYMESSAGE" : verifyMessage(Integer.parseInt(parameter[0]),parameter[1]);
+    	break;
     	case "CLOSEAPP" : 
     		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
     		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
@@ -70,6 +72,18 @@ public class ME_MOOD extends ME_MOOD_Repository {
     	List<WebElement> messageList = MOBILE.driverList.get(udid).findElementsById(table.get("messageList"));
     	return messageList.get(messageList.size()-index).getAttribute("text");
     }
+    
+    private static void verifyMessage(int index,String expect)
+    {
+    	if (expect.equals(selectMessage(index)))
+    	{
+    		LogManager.addStep("verifyMessage", expect, selectMessage(index), "pass", "");
+    	}
+    	else
+    	{
+    		LogManager.addStep("verifyMessage", expect, selectMessage(index), "fail", "");
+    	}
+    }    
     
 	 private static String getOTP(int index)
 	 {
