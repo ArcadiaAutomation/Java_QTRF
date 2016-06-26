@@ -34,6 +34,11 @@ public class Utility extends Miscellaneous {
 		return parameter.substring(parameter.indexOf("'")+1,parameter.indexOf("'",parameter.indexOf("'")+1));
 	}
 	
+	public static String sheetName(String parameter)
+	{
+		return parameter.substring(parameter.indexOf("[")+1,parameter.indexOf("[",parameter.indexOf("]")+1));
+	}
+	
 	public static String[] getParameter(String parameter)
 	{
 		String[] str = parameter.split("\\|");

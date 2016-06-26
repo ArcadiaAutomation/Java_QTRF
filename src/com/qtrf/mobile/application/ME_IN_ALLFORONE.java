@@ -28,34 +28,16 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	switch(testStep.get(3).toUpperCase())
     	{
     	case "OPENAPP" : 
-    	try {
-    	openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
-		LogManager.addStep("openApp", "Switch application", "Switch application", "pass", "");
-		} catch (Exception e) {
-			LogManager.addStep("openApp", "Switch application", e.toString(), "fail", "");	
-		}
+    		try {
+    			openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
+    			LogManager.addStep("openApp", "Switch application", "Switch application", "pass", "");
+    		} catch (Exception e) {
+    			LogManager.addStep("openApp", "Switch application", e.toString(), "fail", "");	
+    		}
     	break;
-    	case "OPENSUBAPP" : 
-    	try {
-    	openSubApp(testStep);
-		LogManager.addStep("openSubApp", "Open sub application", "Open sub application", "pass", "");
-		} catch (Exception e) {
-			LogManager.addStep("openSubApp", "Open sub application", e.toString(), "fail", "");	
-		}
+    	case "OPENSUBAPP" : openSubApp(testStep);
     	break;
-    	case "COMPONENTISEXIST" : 
-    	try{
-    	if (isComponentExist(testStep))
-    	{
-		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : true", "pass", "");
-    	}
-    	else
-    	{
-    	LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : false", "fail", "");    		
-    	}
-		} catch (Exception e) {
-			LogManager.addStep("ComponentIsExist", "Verify component : true", e.toString(), "fail", "");	
-		}    		
+    	case "COMPONENTISEXIST" : isComponentExist(testStep);
     	break;
     	case "COMPONENTCLICK" : clickComponent(testStep);
     	break;
@@ -73,14 +55,26 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static boolean isComponentExist(ArrayList<String> testStep)
     {
+    	
+    	try
+    	{
     	if(Utility.isComponentExist(udid, table.get(parameter[0]), typeTable.get(parameter[0]), parameter[1]))
     	{
     		System.out.println("Verify component : true");
+    		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : true", "pass", "");
     		return true;
     	}
     	else
     	{
+    		
     		System.out.println("Verify component : false");
+    		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : false", "fail", "");
+    		return false;
+    	}
+    	}
+    	catch (Exception e)
+    	{
+    		LogManager.addStep("ComponentIsExist", "Verify component : true", e.toString(), "fail", "");
     		return false;
     	}
     }
@@ -103,11 +97,19 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static void openSubApp(ArrayList<String> testStep)
     {
-    	switch (parameter[0].toUpperCase())
+    	try
     	{
-    	case "ESERVICE":eService(testStep);
-    	break;
-    	default:System.out.println("Sub application not found");
+    		switch (parameter[0].toUpperCase())
+    		{
+    			case "ESERVICE":eService(testStep);
+    			break;
+    			default:System.out.println("Sub application not found");
+    		}
+    		LogManager.addStep("openSubApp", "Open sub application", "Open sub application", "pass", "");
+    	}
+    	catch (Exception e)
+    	{
+    		LogManager.addStep("openSubApp", "Open sub application", e.toString(), "fail", "");	
     	}
     }
     
@@ -127,7 +129,7 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTCLICK","Component='Sender'|Value='true'","","");
     	Executor.applicationMapping(virtualTestStep);
-    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"SELECTMESSAGE","index='1'","","");
+    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"GETOTP","index='1'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"CloseApp","NewOpen='true'","","");
     	Executor.applicationMapping(virtualTestStep);

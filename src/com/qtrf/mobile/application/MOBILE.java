@@ -25,6 +25,16 @@ public class MOBILE extends Utility{
     static Hashtable<String, AndroidDriver> driverList = new Hashtable<String, AndroidDriver>();
     static Hashtable<String, Integer> statusList = new Hashtable<String, Integer>();
     
+    public static void initialize()
+    {
+    	count = -1;
+    	udidMap.clear();
+    	capabilitiesList.clear();
+    	driverList.clear();
+    	statusList.clear();
+    }
+    
+    
     public static void actionMapper(ArrayList<String> testStep)
     {
     	switch(testStep.get(3).toUpperCase())

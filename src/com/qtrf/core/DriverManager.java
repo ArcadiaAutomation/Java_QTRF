@@ -1,12 +1,11 @@
 package com.qtrf.core;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.qtrf.mobile.application.Utility;
+import com.qtrf.mobile.application.MOBILE;;
 
 public class DriverManager {
 	
@@ -30,13 +29,11 @@ public class DriverManager {
 		{
 			Iteration.readIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet"));
 		}	
-		
-		
-		
 	}
 
 	@Test
 	public void test() {
+		MOBILE.initialize();
 		Executor.run();
 	}
 	
@@ -50,6 +47,5 @@ public class DriverManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}	
 }

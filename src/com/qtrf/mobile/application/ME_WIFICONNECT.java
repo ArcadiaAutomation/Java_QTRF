@@ -27,15 +27,15 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     	case "OPENAPP" : openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
     	break;
     	case "SETENABLEWIFI" : 
-    		if (MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("false"))
+    		if (!isWifiOpen())
     		MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
     	break;
-    	case "WAITUNTIL" : waitUntil();
+    	case "WAITUNTIL" : ;System.out.println("Wait until : "+waitUntil());
     	break;
     	case "VERIFYWIFI" : System.out.println("verify wifi : "+verifyWifi());
     	break;
     	case "SETDISABLEWIFI" : 
-    		if (MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("true"))
+    		if (isWifiOpen())
     		MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
     	break;
     	case "CLOSEAPP" : MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
@@ -44,52 +44,47 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     	}    			
     }
 	
-	public static void waitUntil()
+	public static boolean waitUntil()
 	{
-		wait(10);
-		while (!MOBILE.driverList.get(udid).findElementsById(table.get("connecting")).isEmpty())
+		int count=0;
+		while (count<Integer.parseInt(parameter[2]))
 		{
+			if (parameter[0].toUpperCase().equals("Exist"))
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
+				{
+					return true;
+				}
+			}
 			wait(1);
+			count=count+1;
 		}
+		return false;
 	}
+	
+	
+	public static boolean isWifiOpen()
+	{
+		return MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("true");
+	}
+	
 	
 	public static boolean verifyWifi()
 	{
-		if (MOBILE.driverList.get(udid).findElementsById(table.get("ssid")).isEmpty())
-		{
-			System.out.println("Wifi not found");
-			return false;
-		}
-		else
-		{
-		if (!MOBILE.driverList.get(udid).findElementsById(table.get("connected")).isEmpty())
-		{
-			System.out.println(parameter[0]);
-			if (parameter[0].toUpperCase()=="ENABLE")
+			if (parameter[0].toUpperCase().equals("ENABLE"))
 			{
-				System.out.println("THIS 1");
-				return false;
+				return isWifiOpen();
 			}
 			else
 			{
-				System.out.println("THIS 2");
-				return true;
+				return !isWifiOpen();
 			}
-		}
-		else
-		{
-			if (MOBILE.driverList.get(udid).findElementsById(table.get("ssid")).get(0)=="@AIS_SMART")
-			{
-				System.out.println("THIS 3");
-				return true;
-			}
-			else
-			{
-				System.out.println("THIS 4");
-				return false;
-			}
-		}
-		}
 	}
-    
 }
