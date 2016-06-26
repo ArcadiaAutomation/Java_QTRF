@@ -45,8 +45,14 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	break;
     	case "COMPONENTISEXIST" : 
     	try{
-    	isComponentExist(testStep);
+    	if (isComponentExist(testStep))
+    	{
 		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : true", "pass", "");
+    	}
+    	else
+    	{
+    	LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : false", "fail", "");    		
+    	}
 		} catch (Exception e) {
 			LogManager.addStep("ComponentIsExist", "Verify component : true", e.toString(), "fail", "");	
 		}    		
@@ -56,6 +62,8 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	case "SETTEXT" : setText(testStep);
     	break;
     	case "SETOTP" : setOTP(testStep);
+    	break;
+    	case "WAITUNTIL" : waitUntil(testStep);
     	break;
     	case "CLOSEAPP" : closeApp();
     	break;
@@ -128,6 +136,15 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='submitOTP'","","");
     	Executor.applicationMapping(virtualTestStep);    	
     }
+    
+	public static void waitUntil(ArrayList<String> testStep)
+	{
+		wait(10);
+		while (!MOBILE.driverList.get(udid).findElementsById(table.get("connecting")).isEmpty())
+		{
+			wait(1);
+		}
+	}
     
     private static void closeApp()
     {

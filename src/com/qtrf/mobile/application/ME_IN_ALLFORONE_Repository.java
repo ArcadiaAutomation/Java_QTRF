@@ -39,7 +39,7 @@ public class ME_IN_ALLFORONE_Repository extends Utility {
 		typeTable.put("otpNumber", "id");
 		table.put("submitOTP","com.ais.mimo.eservice:id/btn_submit_password");
 		typeTable.put("submitOTP", "id");
-		table.put("verifyEservice","รหัสผ่านไม่ถูกต้อง กรุณาระบุใหม่อีกครั้ง");
+		table.put("verifyEservice","eService");
 		typeTable.put("verifyEservice", "text");		
 		
 	}

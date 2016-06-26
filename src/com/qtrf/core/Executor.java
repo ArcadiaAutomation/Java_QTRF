@@ -1,5 +1,6 @@
 package com.qtrf.core;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.qtrf.mobile.application.*;
@@ -10,11 +11,14 @@ public class Executor {
 		for (int i=1;i<TestCase.getTestCase().size();i++)
 		{
 			System.out.println("Start step : "+i);
-			applicationMapping(TestCase.getTestCase().get(i));
+			if (!applicationMapping(TestCase.getTestCase().get(i)))
+			{
+				break;
+			}
 		}
 	}
 	
-	public static void applicationMapping(ArrayList<String> testStep)
+	public static boolean applicationMapping(ArrayList<String> testStep)
 	{
 		switch(testStep.get(1).toUpperCase())
 		{
@@ -32,7 +36,21 @@ public class Executor {
 		break;		
 		case "ESRVICEWEB"	: EServiceWeb.actionMapper(testStep);
 		break;
-		default : System.out.println("Command not found");System.exit(0);
+		default : System.out.println("Command not found");
+		return false;
+		}
+		return true;
+		
+	}
+	
+	public static void report()
+	{
+		LogManager.closeLog();
+		LogManager.generateHTML();	
+		try {
+			Runtime.getRuntime().exec("cmd.exe /c "+Environment.getValue("LogDir"));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

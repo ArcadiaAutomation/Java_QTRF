@@ -72,16 +72,16 @@ public class ME_MOOD extends ME_MOOD_Repository {
     
 	 private static String getOTP(String OTP)
 	 {
-		 int index = OTP.indexOf(":");
+		 int index = OTP.indexOf("OTP");
 		 if (index!=-1)
 		 {
-		 System.out.println("OTP : "+OTP.substring(index+2,index+6));
-		 return OTP.substring(index+2,index+6);
+		 System.out.println("OTP : "+OTP.substring(index+6,index+10));
+		 return OTP.substring(index+6,index+10);
 		 }
 		 else
 		 {
-		System.out.println("OTP Not found in message");
-		return "OTP Not found in message";
+		 System.out.println("OTP Not found in message");
+		 return "OTP Not found in message";
 		 }
 	 }
     

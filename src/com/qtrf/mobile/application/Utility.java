@@ -51,8 +51,6 @@ public class Utility extends Miscellaneous {
 	public static boolean isComponentExist(String udid,String path,String findOption,String value)
 	{
 		boolean result=false;
-		if (Boolean.valueOf(value))
-		{	
 		switch(findOption)
 		{
 		case "id" : result=(!MOBILE.driverList.get(udid).findElementsById(path).isEmpty());
@@ -66,6 +64,8 @@ public class Utility extends Miscellaneous {
 		case "css" : result=(!MOBILE.driverList.get(udid).findElementsByCssSelector(path).isEmpty());	
 		default: result=false;
 		}
+		if (Boolean.valueOf(value))
+		{	
 		 	return result;
 		}
 		else
@@ -78,15 +78,15 @@ public class Utility extends Miscellaneous {
 	{
 		switch(findOption)
 		{
-		case "id" : MOBILE.driverList.get(udid).findElementById(path).click();
+		case "id" : MOBILE.driverList.get(udid).findElementById(path).click();wait(2);
 		break;
-		case "xpath" : MOBILE.driverList.get(udid).findElementByXPath(path).click();
+		case "xpath" : MOBILE.driverList.get(udid).findElementByXPath(path).click();wait(2);
 		break;
-		case "text" : MOBILE.driverList.get(udid).findElementByName(path).click();
+		case "text" : MOBILE.driverList.get(udid).findElementByName(path).click();wait(2);
 		break;
-		case "class" : MOBILE.driverList.get(udid).findElementByClassName(path).click();
+		case "class" : MOBILE.driverList.get(udid).findElementByClassName(path).click();wait(2);
 		break;
-		case "css" : MOBILE.driverList.get(udid).findElementByCssSelector(path).click();	
+		case "css" : MOBILE.driverList.get(udid).findElementByCssSelector(path).click();wait(2);
 		default: System.out.println("Element not found");
 		}
 	}
@@ -162,7 +162,7 @@ public class Utility extends Miscellaneous {
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(2);
+	    wait(5);
 	    
 	    try {
 	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
