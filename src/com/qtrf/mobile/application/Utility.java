@@ -198,26 +198,4 @@ public class Utility extends Miscellaneous {
 		}
 	}
 	
-	public static boolean waitUntil(String[] parameter)
-	{
-		String startTime = getCurrentSec();
-		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
-		{
-			if (parameter[0].toUpperCase().equals("Exist"))
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
-				{
-					return true;
-				}
-			}
-			else
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 }
