@@ -46,8 +46,8 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 	
 	public static boolean waitUntil()
 	{
-		int count=0;
-		while (count<Integer.parseInt(parameter[2]))
+		String startTime = getCurrentSec();
+		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
 		{
 			if (parameter[0].toUpperCase().equals("Exist"))
 			{
@@ -63,8 +63,6 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 					return true;
 				}
 			}
-			wait(1);
-			count=count+1;
 		}
 		return false;
 	}

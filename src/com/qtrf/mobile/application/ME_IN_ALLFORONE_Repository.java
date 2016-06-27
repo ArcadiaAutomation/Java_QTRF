@@ -40,7 +40,9 @@ public class ME_IN_ALLFORONE_Repository extends Utility {
 		table.put("submitOTP","com.ais.mimo.eservice:id/btn_submit_password");
 		typeTable.put("submitOTP", "id");
 		table.put("verifyEservice","eService");
-		typeTable.put("verifyEservice", "text");		
+		typeTable.put("verifyEservice", "text");	
+		table.put("progressBar","Loading");
+		typeTable.put("progressBar", "text");	
 		
 	}
 	

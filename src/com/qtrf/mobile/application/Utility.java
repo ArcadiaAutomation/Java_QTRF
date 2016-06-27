@@ -167,7 +167,7 @@ public class Utility extends Miscellaneous {
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(5);
+	    wait(4);
 	    
 	    try {
 	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
@@ -185,4 +185,39 @@ public class Utility extends Miscellaneous {
 		}
 	}
 	
+	public static int divideSec(String startTime)
+	{
+		int result=Integer.parseInt(getCurrentSec())-Integer.parseInt(startTime);
+		if (result<0)
+		{
+		return 60+result;
+		}
+		else
+		{
+		return result;
+		}
+	}
+	
+	public static boolean waitUntil(String[] parameter)
+	{
+		String startTime = getCurrentSec();
+		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
+		{
+			if (parameter[0].toUpperCase().equals("Exist"))
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
