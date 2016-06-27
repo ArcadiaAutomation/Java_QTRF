@@ -90,7 +90,6 @@ public class LogManager extends Miscellaneous{
 		try {
 			writer = new FileWriter(file.getAbsoluteFile());
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		BufferedWriter buffer = new BufferedWriter(writer);
@@ -107,7 +106,6 @@ public class LogManager extends Miscellaneous{
 		try {
 			buffer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

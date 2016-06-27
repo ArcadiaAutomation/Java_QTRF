@@ -34,7 +34,7 @@ public class Executor {
 		break;
 		case "ONENUMBERFORSERVICE" : OneNumberForPromotion.actionMapper(testStep);
 		break;
-		default : System.out.println("Command not found");
+		default : System.out.println("Command not found");System.exit(0);
 		}
 	}
 }

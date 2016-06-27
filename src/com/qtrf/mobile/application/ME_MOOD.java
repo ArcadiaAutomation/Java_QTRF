@@ -36,7 +36,9 @@ public class ME_MOOD extends ME_MOOD_Repository {
     	break;
     	case "SELECTMESSAGE" : selectMessage(Integer.parseInt(parameter[0]));
     	break;
-    	case "CLOSEAPP" : MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	case "CLOSEAPP" : 
+    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
     	break; 	
     	default : System.out.println("Action not found");
     	}
@@ -64,10 +66,6 @@ public class ME_MOOD extends ME_MOOD_Repository {
     private static String selectMessage(int index)
     {
     	List<WebElement> messageList = MOBILE.driverList.get(udid).findElementsById(table.get("messageList"));
-    	for (int i=0;i<messageList.size();i++)
-    	{
-    	System.out.println(messageList.get(i).getAttribute("text"));
-    	}
     	otpNumber=getOTP(messageList.get(messageList.size()-index).getAttribute("text"));
     	return otpNumber;
     }
@@ -77,7 +75,7 @@ public class ME_MOOD extends ME_MOOD_Repository {
 		 int index = OTP.indexOf(":");
 		 if (index!=-1)
 		 {
-		 System.out.println(OTP.substring(index+2,index+6));
+		 System.out.println("OTP : "+OTP.substring(index+2,index+6));
 		 return OTP.substring(index+2,index+6);
 		 }
 		 else

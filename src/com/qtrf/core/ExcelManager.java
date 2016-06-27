@@ -22,20 +22,17 @@ public class ExcelManager {
 			
 			try {
 				file = new FileInputStream(new File(path));
-				LogManager.addStep("Read file", "File exist", "File exist", "pass", "");
-				System.out.println(LogManager.reportLog);
+				LogManager.addStep("Read file : "+path, "File exist", "File exist", "pass", "");
 				LogManager.generateHTML();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-				LogManager.addStep("Read file", "File exist", "File not exist", "fail", "");
+				LogManager.addStep("Read file : "+path, "File exist", e.toString(), "fail", "");
 			}
 			
 			try {
 				workbook = new XSSFWorkbook(file);
-				LogManager.addStep("Read file", "File reable", "File reable", "pass", "");
 			} catch (IOException e) {
 				e.printStackTrace();
-				LogManager.addStep("Read file", "File reable", "File unreable", "fail", "");
 			}
 			
 			XSSFSheet sheet = workbook.getSheetAt(getSheetIndex(workbook,sheetName));		

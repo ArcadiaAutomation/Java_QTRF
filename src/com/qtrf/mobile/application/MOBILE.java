@@ -47,7 +47,6 @@ public class MOBILE extends Utility{
 	    try {
 			Runtime.getRuntime().exec("cmd.exe /c \"start node appium -p "+(4723+count)+" -a 127.0.0."+(count+1)+" --session-override\"",null,dir);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    

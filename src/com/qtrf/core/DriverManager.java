@@ -30,9 +30,7 @@ public class DriverManager {
 		{
 			Iteration.readIteration(Environment.getValue("testCasePath"),Environment.getValue("iterationSheet"));
 		}	
-		
-		
-		
+					
 	}
 
 	@Test
@@ -48,7 +46,6 @@ public class DriverManager {
 		try {
 			Runtime.getRuntime().exec("cmd.exe /c "+Environment.getValue("LogDir"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
