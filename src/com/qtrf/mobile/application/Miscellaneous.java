@@ -33,4 +33,11 @@ public class Miscellaneous {
 		Date timeDate = new Date();	
 		return dateFormat.format(timeDate);
 	}
+	
+	public static String getCurrentSec()
+	{
+		DateFormat dateFormat = new SimpleDateFormat("ss");
+		Date timeDate = new Date();	
+		return dateFormat.format(timeDate);
+	}
 }

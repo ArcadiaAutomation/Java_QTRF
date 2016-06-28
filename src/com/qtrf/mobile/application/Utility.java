@@ -167,7 +167,7 @@ public class Utility extends Miscellaneous {
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(5);
+	    wait(4);
 	    
 	    try {
 	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
@@ -182,6 +182,19 @@ public class Utility extends Miscellaneous {
 		else
 		{
 			MOBILE.driverList.get(udid).startActivity(appPackage, appActivity);
+		}
+	}
+	
+	public static int divideSec(String startTime)
+	{
+		int result=Integer.parseInt(getCurrentSec())-Integer.parseInt(startTime);
+		if (result<0)
+		{
+		return 60+result;
+		}
+		else
+		{
+		return result;
 		}
 	}
 	

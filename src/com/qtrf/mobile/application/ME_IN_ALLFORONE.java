@@ -123,6 +123,8 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='sentOTP'","","");
     	Executor.applicationMapping(virtualTestStep);
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='6'","","");
+    	Executor.applicationMapping(virtualTestStep);    			
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"OpenApp","NewOpen='true'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTISEXIST","Component='Sender'|Value='true'","","");
@@ -136,16 +138,35 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"SetOTP","Component='otpNumber'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='submitOTP'","","");
-    	Executor.applicationMapping(virtualTestStep);    	
+    	Executor.applicationMapping(virtualTestStep);  
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='6'","","");
+    	Executor.applicationMapping(virtualTestStep);
     }
     
-	public static void waitUntil(ArrayList<String> testStep)
+	public static boolean waitUntil(ArrayList<String> testStep)
 	{
-		wait(10);
-		while (!MOBILE.driverList.get(udid).findElementsById(table.get("connecting")).isEmpty())
+		String startTime = getCurrentSec();
+		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
 		{
-			wait(1);
+			if (parameter[0].toUpperCase().equals("Exist"))
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
+				{
+					System.out.println("Wait until exist : true");
+					return true;
+				}
+			}
+			else
+			{
+				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
+				{
+					System.out.println("Wait until not exist : true");
+					return true;
+				}
+			}
 		}
+		System.out.println("Wait until : false");
+		return false;
 	}
     
     private static void closeApp()
