@@ -47,6 +47,8 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	break;
     	case "WAITUNTIL" : waitUntil(testStep);
     	break;
+    	case "BACK" : MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	break;
     	case "CLOSEAPP" : closeApp();
     	break;
     	default : System.out.println("Action not found");
@@ -84,7 +86,6 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
     }
 
-    
     private static void setText(ArrayList<String> testStep)
     {
     	Utility.setText(udid, table.get(parameter[0]), typeTable.get(parameter[0]), parameter[1]);
@@ -118,12 +119,14 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	ArrayList<String> virtualTestStep = new ArrayList<String>();
     	String mobileNumber = Config.getConfig().get("adb:RUN_"+testStep.get(2).charAt(testStep.get(2).length()-1)+"_Number");
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='eService'|Value='true'","","");
-    	Executor.applicationMapping(virtualTestStep);
+    	Executor.applicationMapping(virtualTestStep);   
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
+    	Executor.applicationMapping(virtualTestStep);    
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"SetText","Component='mobileNumber'|Value='"+mobileNumber+"'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='sentOTP'","","");
     	Executor.applicationMapping(virtualTestStep);
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='6'","","");
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
     	Executor.applicationMapping(virtualTestStep);    			
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"OpenApp","NewOpen='true'","","");
     	Executor.applicationMapping(virtualTestStep);
@@ -137,36 +140,17 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"SetOTP","Component='otpNumber'","","");
     	Executor.applicationMapping(virtualTestStep);
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
+    	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='submitOTP'","","");
     	Executor.applicationMapping(virtualTestStep);  
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='6'","","");
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
     	Executor.applicationMapping(virtualTestStep);
     }
     
-	public static boolean waitUntil(ArrayList<String> testStep)
+	private static void waitUntil(ArrayList<String> testStep)
 	{
-		String startTime = getCurrentSec();
-		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
-		{
-			if (parameter[0].toUpperCase().equals("Exist"))
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
-				{
-					System.out.println("Wait until exist : true");
-					return true;
-				}
-			}
-			else
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
-				{
-					System.out.println("Wait until not exist : true");
-					return true;
-				}
-			}
-		}
-		System.out.println("Wait until : false");
-		return false;
+		Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
 	}
     
     private static void closeApp()

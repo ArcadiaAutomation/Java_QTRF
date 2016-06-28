@@ -8,6 +8,7 @@ import com.qtrf.mobile.application.*;
 public class Executor {
 	
 	public static void run(){	
+
 		for (int i=1;i<TestCase.getTestCase().size();i++)
 		{
 			System.out.println("Start step : "+i);
@@ -17,7 +18,7 @@ public class Executor {
 			}
 		}
 	}
-	
+		
 	public static boolean applicationMapping(ArrayList<String> testStep)
 	{
 		switch(testStep.get(1).toUpperCase())

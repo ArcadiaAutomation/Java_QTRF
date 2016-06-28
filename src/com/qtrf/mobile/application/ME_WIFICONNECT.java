@@ -30,7 +30,7 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     		if (!isWifiOpen())
     		MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).click();
     	break;
-    	case "WAITUNTIL" : ;System.out.println("Wait until : "+waitUntil());
+    	case "WAITUNTIL" : ;System.out.println("Wait until : "+waitUntil(testStep));
     	break;
     	case "VERIFYWIFI" : System.out.println("verify wifi : "+verifyWifi());
     	break;
@@ -44,7 +44,7 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     	}    			
     }
 	
-	public static boolean waitUntil()
+	public static boolean waitUntil(ArrayList<String> testStep)
 	{
 		String startTime = getCurrentSec();
 		while (divideSec(startTime)<Integer.parseInt(parameter[2]))

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
+import com.qtrf.core.Executor;
 import com.qtrf.core.Iteration;
 import com.qtrf.core.LogManager;
+
+import io.appium.java_client.android.AndroidKeyCode;
 
 public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repository{
 
@@ -20,22 +23,58 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     	
     	switch(testStep.get(3).toUpperCase())
     	{
-    	case "OPENSUBAPP" : openSubApp(testStep);
+    	case "SELECTMENU" : selectMenu(testStep);
     	break;
+    	case "SELECTSUBMENU" : selectSubMenu(testStep);
+    	break;   	
     	case "COMPONENTISEXIST" : isComponentExist(testStep);
     	break;
     	case "COMPONENTCLICK" : clickComponent(testStep);
     	break;
     	case "WAITUNTIL" : waitUntil(testStep);
     	break;
+    	case "VERIFYMESSAGE" : verifyMessage(testStep);
+    	break;
     	default : System.out.println("Action not found");
     	}    	
     }
     
-	private static void openSubApp(ArrayList<String> testStep)
+	private static void selectSubMenu(ArrayList<String> testStep)
 	{
-		Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
+		try
+		{
+		System.out.println(table.get(parameter[0]));	
+		if (Utility.isComponentExist(udid, table.get(parameter[0]), typeTable.get(parameter[0]), "false"))	
+			{
+			 	MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+			 	ArrayList<String> virtualTestStep = new ArrayList<String>();
+	    	 	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE_ESERVICE",testStep.get(2),"selectMenu","Component='"+parameter[1]+"'","","");
+	    	 	System.out.println(virtualTestStep);
+	    	 	Executor.applicationMapping(virtualTestStep);
+			}
+
+				Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
+		 		LogManager.addStep("selectSubMenu : "+parameter[0], "Menu selected", "Menu selected", "pass", "");
+
+		}
+		catch (Exception e)
+		{
+			LogManager.addStep("selectSubMenu : "+parameter[0], "Menu selected", e.toString(), "fail", "");	
+		}
 	}
+	
+	private static void selectMenu(ArrayList<String> testStep)
+	{
+		try
+		{
+		Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
+		LogManager.addStep("selectMenu", "Menu selected : "+parameter[0], "Menu selected", "pass", "");
+		}
+		catch (Exception e)
+		{
+			LogManager.addStep("selectMenu : "+parameter[0], "Menu selected", e.toString(), "fail", "");	
+		}
+	}	
 	
     private static boolean isComponentExist(ArrayList<String> testStep)
     {
@@ -48,13 +87,14 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : true", "pass", "");
     		return true;
     	}
+    	
     	else
     	{
-    		
     		System.out.println("Verify component : false");
     		LogManager.addStep("ComponentIsExist", "Verify component : true", "Verify component : false", "fail", "");
     		return false;
     	}
+    	
     	}
     	catch (Exception e)
     	{
@@ -68,30 +108,34 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
     }
     
-	public static boolean waitUntil(ArrayList<String> testStep)
+	private static void waitUntil(ArrayList<String> testStep)
 	{
-		String startTime = getCurrentSec();
-		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
+		Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
+	}
+	
+	private static void verifyMessage(ArrayList<String> testStep)
+	{
+		try
 		{
-			if (parameter[0].toUpperCase().equals("Exist"))
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "true"))
-				{
-					System.out.println("Wait until exist : true");
-					return true;
-				}
-			}
-			else
-			{
-				if (Utility.isComponentExist(udid, table.get(parameter[1]), typeTable.get(parameter[1]), "false"))
-				{
-					System.out.println("Wait until not exist : true");
-					return true;
-				}
-			}
+			
+    	ArrayList<String> virtualTestStep = new ArrayList<String>();
+    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"OpenApp","NewOpen='true'","","");
+    	Executor.applicationMapping(virtualTestStep);
+    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTISEXIST","Component='Sender'|Value='true'","","");
+    	Executor.applicationMapping(virtualTestStep);
+    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"VERIFYMESSAGESENDING","","","");
+    	Executor.applicationMapping(virtualTestStep);
+    	 virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTCLICK","Component='Sender'|Value='true'","","");
+    	 Executor.applicationMapping(virtualTestStep);
+    	 virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"VERIFYMESSAGE",testStep.get(4),"","");
+    	 Executor.applicationMapping(virtualTestStep);   	
+    	 virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"CloseApp","NewOpen='true'","","");
+    	 Executor.applicationMapping(virtualTestStep);
 		}
-		System.out.println("Wait until : false");
-		return false;
+		catch (Exception e)
+		{
+			LogManager.addStep("verifyMessage", parameter[1], e.toString(), "fail", "");
+		}
 	}
     
 }

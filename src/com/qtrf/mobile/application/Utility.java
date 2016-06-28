@@ -67,8 +67,10 @@ public class Utility extends Miscellaneous {
 		case "class" : result=(!MOBILE.driverList.get(udid).findElementsByClassName(path).isEmpty());
 		break;
 		case "css" : result=(!MOBILE.driverList.get(udid).findElementsByCssSelector(path).isEmpty());	
+		break;
 		default: result=false;
 		}
+				
 		if (Boolean.valueOf(value))
 		{	
 		 	return result;
@@ -167,13 +169,25 @@ public class Utility extends Miscellaneous {
 		
 	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
 	    	      
-	    wait(4);
+	    String startTime = getCurrentSec();
 	    
-	    try {
-	    	MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+	    
+	    boolean openServer=false;
+	    while (divideSec(startTime)<59)
+	    {
+	    	try {
+	    		MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
+	    		openServer=true;
+	    		break;
+	    	} catch (MalformedURLException e) {
+	    		
+	    	}
+	    }
+	    
+	    if (!openServer)
+	    {
+	    	LogManager.addStep("connectDevice", "Session created", "Server not found", "fail", "");
+	    }
 	    
 	    MOBILE.statusList.put(udid, 1);
 	    MOBILE.driverList.get(udid).launchApp();
@@ -196,6 +210,33 @@ public class Utility extends Miscellaneous {
 		{
 		return result;
 		}
+	}
+	
+	public static boolean waitUntil(String[] parameter,String udid,String path,String findOption)
+	{
+		String startTime = getCurrentSec();
+		while (divideSec(startTime)<Integer.parseInt(parameter[2]))
+		{
+			if (parameter[0].toUpperCase().equals("EXIST"))
+			{
+				if (Utility.isComponentExist(udid, path, findOption, "true"))
+				{
+					System.out.println("Wait until exist : true");
+					return true;
+				}
+			}
+			else
+			{
+				if (Utility.isComponentExist(udid, path, findOption, "false"))
+				{
+					System.out.println("Wait until not exist : true");
+					return true;
+				}
+			}
+		}
+		System.out.println("Wait until : false");
+		LogManager.addStep("waitUntil", parameter[1], "fail", "fail", "");
+		return false;
 	}
 	
 }

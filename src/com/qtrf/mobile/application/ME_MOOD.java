@@ -3,6 +3,7 @@ package com.qtrf.mobile.application;
 import com.qtrf.core.LogManager;
 import io.appium.java_client.android.AndroidKeyCode;
 import com.qtrf.core.Environment;
+import com.qtrf.core.Executor;
 import com.qtrf.core.Config;
 import com.qtrf.core.Iteration;
 
@@ -38,6 +39,10 @@ public class ME_MOOD extends ME_MOOD_Repository {
     	break;
     	case "VERIFYMESSAGE" : verifyMessage(Integer.parseInt(parameter[0]),parameter[1]);
     	break;
+    	case "VERIFYMESSAGESENDING" : verifyMessageSending(testStep);
+    	break;
+    	case "WAITUNTIL" : waitUntil(testStep);
+    	break;   	
     	case "CLOSEAPP" : 
     		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
     		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
@@ -75,17 +80,17 @@ public class ME_MOOD extends ME_MOOD_Repository {
     
     private static void verifyMessage(int index,String expect)
     {
-    	if (expect.equals(selectMessage(index)))
+    	if (selectMessage(index).indexOf(expect)!=-1)
     	{
-    		LogManager.addStep("verifyMessage", expect, selectMessage(index), "pass", "");
+    		LogManager.addStep("verifyMessage",expect , selectMessage(index), "pass", "");
     	}
     	else
     	{
-    		LogManager.addStep("verifyMessage", expect, selectMessage(index), "fail", "");
+    		LogManager.addStep("verifyMessage",expect , selectMessage(index), "fail", "");
     	}
     }    
     
-	 private static String getOTP(int index)
+	private static String getOTP(int index)
 	 {
 		 String OTP=selectMessage(index);
 		
@@ -102,6 +107,22 @@ public class ME_MOOD extends ME_MOOD_Repository {
 		 return "OTP Not found in message";
 		 }
 	 }
-    
+	 
+	public static void verifyMessageSending(ArrayList<String> testStep)
+	{
+    	String[] parameter = {"Exist","verifyMessageSending","59"};
+    	waitUntil(parameter);
+	}
+	
+	private static boolean waitUntil(ArrayList<String> testStep)
+	{
+		return Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
+	}
+	
+	private static boolean waitUntil(String[] parameter)
+	{
+		return Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
+	}
+
 }
 
