@@ -75,7 +75,7 @@ public class ME_MOOD extends ME_MOOD_Repository {
     
     private static void verifyMessage(int index,String expect)
     {
-    	if (expect.equals(selectMessage(index)))
+    	if (selectMessage(index).indexOf(expect)!=-1)
     	{
     		LogManager.addStep("verifyMessage", expect, selectMessage(index), "pass", "");
     	}

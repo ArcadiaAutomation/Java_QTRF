@@ -1,9 +1,12 @@
 package com.qtrf.mobile.application;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -31,6 +34,9 @@ public class WebCommon {
 	    		break;
 	    	case "CLICKELEMENT" :
 	    		ClickElement(parameter[0],parameter[1]);
+	    		break;
+	    	case "CHECKELEMENT" :
+	    		CheckElement(parameter[0],parameter[1]);
 	    		break;
 	    	case "SELECTDROPDOWN" :
 	    		SelectDropDown(parameter[0],parameter[1],parameter[2]);
@@ -157,7 +163,34 @@ public class WebCommon {
 	    		dropdown.selectByVisibleText(text);
 	    		break;
 	    	default : System.out.println("Action not found");
-	    		
+	    	}
+		}
+	    public static void CheckElement(String type, String value) {
+			// TODO Auto-generated method stub
+	    	switch(type.toUpperCase()) {
+	    	case "ID" : 
+	    		List<WebElement> elements = driver.findElements(By.id(value));
+	    		elements.get(0).click();
+	    		break;
+	    	case "NAME" : 
+	    		driver.findElement(By.name(value)).click();
+	    		break;
+	    	case "LINK TEXT" : 
+	    		driver.findElement(By.linkText(value)).click();
+	    		break;
+	    	case "TAG NAME" : 
+	    		driver.findElement(By.tagName(value)).click();
+	    		break;
+	    	case "CLASS" : 
+	    		driver.findElement(By.className(value)).click();
+	    		break;
+	    	case "CSS" : 
+	    		driver.findElement(By.cssSelector(value)).click();
+	    		break;
+	    	case "XPATH" : 
+	    		driver.findElement(By.xpath(value)).click();
+				break;
+	    	default : System.out.println("Action not found");
 	    	}
 		}
 }

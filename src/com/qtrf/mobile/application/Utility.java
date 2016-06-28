@@ -31,7 +31,7 @@ public class Utility extends Miscellaneous {
 	
 	public static String parameterFromString(String parameter)
 	{
-		return parameter.substring(parameter.indexOf("'")+1,parameter.indexOf("'",parameter.indexOf("'")+1));
+		return parameter.substring(parameter.indexOf("'")+1,parameter.lastIndexOf("'"));
 	}
 	
 	public static String sheetName(String parameter)

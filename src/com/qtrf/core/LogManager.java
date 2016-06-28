@@ -56,7 +56,7 @@ public class LogManager extends Miscellaneous{
 		reportLog.add("<tr>");     
 		reportLog.add("<th width=\"9%\">Time</th>");
 		reportLog.add("<th width=\"18%\">Action</th>");
-		reportLog.add("<th width=\"27%\">Ecpected</th>");
+		reportLog.add("<th width=\"27%\">Expected</th>");
 		reportLog.add("<th width=\"27%\">Actual</th>");
 		reportLog.add("<th width=\"10%\">Result</th>");
 		reportLog.add("<th width=\"9%\">CaptureScreen</th>");
