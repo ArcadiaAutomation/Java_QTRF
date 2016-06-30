@@ -173,25 +173,25 @@ public class Utility extends Miscellaneous {
 	    
 	    
 	    boolean openServer=false;
-	    while (divideSec(startTime)<59)
-	    {
-	    	try {
-	    		MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
-	    		openServer=true;
-	    		break;
-	    	} catch (MalformedURLException e) {
-	    		
-	    	}
-	    }
+	    
+	     	while (divideSec(startTime)<59)
+	     	{
+	     			try {
+						MOBILE.driverList.put(udid, new AndroidDriver(new URL(url), MOBILE.capabilitiesList.get(udid)));
+		     			openServer=true;
+		     			break;
+					} catch (Exception e) {
+
+					} 
+	     	}
 	    
 	    if (!openServer)
 	    {
 	    	LogManager.addStep("connectDevice", "Session created", "Server not found", "fail", "");
 	    }
-	    
-	    MOBILE.statusList.put(udid, 1);
-	    MOBILE.driverList.get(udid).launchApp();
-	    System.out.println("Start appium session number : "+index);
+	     	MOBILE.statusList.put(udid, 1);
+	     	MOBILE.driverList.get(udid).launchApp();
+	     	System.out.println("Start appium session number : "+index);
 		}
 		else
 		{

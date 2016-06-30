@@ -16,7 +16,7 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
 	static String udid;
 	
     public static void actionMapper(ArrayList<String> testStep)
-    {
+    {   	
     	parameter = Utility.getParameter(testStep.get(4));
     	udid = getUdid(testStep.get(2));
     	ini();
@@ -31,7 +31,7 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     	break;
     	case "COMPONENTCLICK" : clickComponent(testStep);
     	break;
-    	case "WAITUNTIL" : waitUntil(testStep);
+    	case "WAITUNTIL" : waitUntil(testStep,parameter);
     	break;
     	case "VERIFYMESSAGE" : verifyMessage(testStep);
     	break;
@@ -40,21 +40,28 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     }
     
 	private static void selectSubMenu(ArrayList<String> testStep)
-	{
+	{	
+		String[] parameter = Utility.getParameter(testStep.get(4));
 		try
 		{
-		System.out.println(table.get(parameter[0]));	
 		if (Utility.isComponentExist(udid, table.get(parameter[0]), typeTable.get(parameter[0]), "false"))	
 			{
-			 	MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
 			 	ArrayList<String> virtualTestStep = new ArrayList<String>();
+			 	MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);	
+	    	 	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE_ESERVICE",testStep.get(2),"selectMenu","Component='"+parameter[2]+"'","","");
+	    	 	Executor.applicationMapping(virtualTestStep);	
+	    	 	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE_ESERVICE",testStep.get(2),"waitUntil","Option='Exist'|Component='verify"+parameter[2]+"'|sec='20'","","");
+	    	 	Executor.applicationMapping(virtualTestStep);	
 	    	 	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE_ESERVICE",testStep.get(2),"selectMenu","Component='"+parameter[1]+"'","","");
-	    	 	System.out.println(virtualTestStep);
-	    	 	Executor.applicationMapping(virtualTestStep);
+	    	 	Executor.applicationMapping(virtualTestStep);    	
+	    	 	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE_ESERVICE",testStep.get(2),"selectSubMenu",testStep.get(4),"","");
+	    	 	Executor.applicationMapping(virtualTestStep);  	    	 	
 			}
-
+		else
+		 	{
 				Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
 		 		LogManager.addStep("selectSubMenu : "+parameter[0], "Menu selected", "Menu selected", "pass", "");
+		 	}
 
 		}
 		catch (Exception e)
@@ -108,13 +115,14 @@ public class ME_IN_ALLFORONE_ESERVICE extends ME_IN_ALLFORONE_ESERVICE_Repositor
     	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
     }
     
-	private static void waitUntil(ArrayList<String> testStep)
+	private static void waitUntil(ArrayList<String> testStep,String[] parameter)
 	{
 		Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
 	}
 	
 	private static void verifyMessage(ArrayList<String> testStep)
 	{
+		String[] parameter = Utility.getParameter(testStep.get(4));
 		try
 		{
 			

@@ -31,6 +31,7 @@ public class DriverManager {
 		}	
 	}
 
+	
 	@Test
 	public void test() {
 		MOBILE.initialize();

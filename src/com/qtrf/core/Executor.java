@@ -8,7 +8,6 @@ import com.qtrf.mobile.application.*;
 public class Executor {
 	
 	public static void run(){	
-
 		for (int i=1;i<TestCase.getTestCase().size();i++)
 		{
 			System.out.println("Start step : "+i);

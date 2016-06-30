@@ -17,6 +17,8 @@ public class ME_IN_ALLFORONE_ESERVICE_Repository extends Utility {
 		 	typeTable.put("currentPromotion", "text");
 		 	table.put("changeMainPackage", "• Change Main Package");
 		 	typeTable.put("changeMainPackage", "text");
+		 	 	table.put("verifychangeMainPackage", "Change Main Promotion");
+		 	 	typeTable.put("verifychangeMainPackage", "text");
 		 	 	table.put("buffet", "Buffet");
 		 	 	typeTable.put("buffet", "text");
 		 	 	 	table.put("twentyHour", "20-Hours Buffet 69 Baht/Week");
@@ -25,7 +27,7 @@ public class ME_IN_ALLFORONE_ESERVICE_Repository extends Utility {
 		 	 	 	typeTable.put("nightTime", "text");	
 		 	 	 	table.put("dayTime", "Daytime Buffet 199 Baht/Month");
 		 	 	 	typeTable.put("dayTime", "text");	
-		 	 	 	table.put("weekly", "Weekly Buffet 55 Baht/Week ");
+		 	 	 	table.put("weekly", "Weekly Buffet 55 Baht/Week");
 		 	 	 	typeTable.put("weekly", "text");	
 		 	 	table.put("callToAllNetwork", "Call to All Networks");
 		 	 	typeTable.put("callToAllNetwork", "text");

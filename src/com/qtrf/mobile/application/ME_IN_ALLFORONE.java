@@ -16,12 +16,10 @@ import com.qtrf.core.Executor;
 
 public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
 
-	static String[] parameter;
 	static String udid;
 
     public static void actionMapper(ArrayList<String> testStep)
     {
-    	parameter = Utility.getParameter(testStep.get(4));
     	udid = getUdid(testStep.get(2));
     	ini();
     	
@@ -57,6 +55,8 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static boolean isComponentExist(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
     	
     	try
     	{
@@ -83,21 +83,33 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
 
     private static void clickComponent(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
+    	
     	Utility.clickComponent(udid, table.get(parameter[0]), typeTable.get(parameter[0]));
     }
 
     private static void setText(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
+    	
     	Utility.setText(udid, table.get(parameter[0]), typeTable.get(parameter[0]), parameter[1]);
     }
     
     private static void setOTP(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
+    	
     	Utility.setText(udid, table.get(parameter[0]), typeTable.get(parameter[0]), ME_MOOD.otpNumber);
     }
     
     private static void openSubApp(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
+    	
     	try
     	{
     		switch (parameter[0].toUpperCase())
@@ -116,21 +128,26 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     
     private static void eService(ArrayList<String> testStep)
     {
+    	String udid = getUdid(testStep.get(2));
+    	String[] parameter = Utility.getParameter(testStep.get(4));
+    	
     	ArrayList<String> virtualTestStep = new ArrayList<String>();
     	String mobileNumber = Config.getConfig().get("adb:RUN_"+testStep.get(2).charAt(testStep.get(2).length()-1)+"_Number");
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='eService'|Value='true'","","");
     	Executor.applicationMapping(virtualTestStep);   
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='Exist'|ComponentName='mobileNumber'|sec='59'","","");
     	Executor.applicationMapping(virtualTestStep);    
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"SetText","Component='mobileNumber'|Value='"+mobileNumber+"'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='sentOTP'","","");
     	Executor.applicationMapping(virtualTestStep);
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='Exist'|ComponentName='otpNumber'|sec='59'","","");
     	Executor.applicationMapping(virtualTestStep);    			
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"OpenApp","NewOpen='true'","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTISEXIST","Component='Sender'|Value='true'","","");
+    	Executor.applicationMapping(virtualTestStep);
+    	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"VERIFYMESSAGESENDING","","","");
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_MOOD",testStep.get(2),"COMPONENTCLICK","Component='Sender'|Value='true'","","");
     	Executor.applicationMapping(virtualTestStep);
@@ -140,16 +157,17 @@ public class ME_IN_ALLFORONE extends ME_IN_ALLFORONE_Repository {
     	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"SetOTP","Component='otpNumber'","","");
     	Executor.applicationMapping(virtualTestStep);
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
-    	Executor.applicationMapping(virtualTestStep);
     	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"COMPONENTCLICK","Component='submitOTP'","","");
     	Executor.applicationMapping(virtualTestStep);  
-    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='NotExist'|ComponentName='progressBar'|sec='20'","","");
+    	virtualTestStep=cloneTestStep("ME_IN_ALLFORONE",testStep.get(2),"waitUntil","Option='Exist'|ComponentName='innerEService'|sec='59'","","");
     	Executor.applicationMapping(virtualTestStep);
     }
     
 	private static void waitUntil(ArrayList<String> testStep)
 	{
+		String udid = getUdid(testStep.get(2));
+		String[] parameter = Utility.getParameter(testStep.get(4));
+		
 		Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
 	}
     

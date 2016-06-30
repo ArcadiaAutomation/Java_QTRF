@@ -43,12 +43,15 @@ public class ME_MOOD extends ME_MOOD_Repository {
     	break;
     	case "WAITUNTIL" : waitUntil(testStep);
     	break;   	
-    	case "CLOSEAPP" : 
-    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
-    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
-    	break; 	
     	case "GETOTP" : getOTP(Integer.parseInt(parameter[0]));
     	break;
+    	case "BACK" : MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	break;
+    	case "CLOSEAPP" : 
+    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    		wait(2);
+    		MOBILE.driverList.get(udid).pressKeyCode(AndroidKeyCode.KEYCODE_BACK);
+    	break; 	
     	default : System.out.println("Action not found");
     	}
     }
