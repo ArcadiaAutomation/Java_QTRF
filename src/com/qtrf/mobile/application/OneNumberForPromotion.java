@@ -2,6 +2,8 @@ package com.qtrf.mobile.application;
 
 import java.util.ArrayList;
 
+import com.qtrf.core.LogManager;
+
 public class OneNumberForPromotion extends OneNumberForPromotion_Repository {
 	static String[] parameter;
 	static String udid;
@@ -30,16 +32,21 @@ public class OneNumberForPromotion extends OneNumberForPromotion_Repository {
     	{
     	case "YOURCURRENTPACKAGE" : 
     		WebCommon.ClickElement("id","menu-83");
+    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "CHANGEMAINPACKAGE" :
     		WebCommon.ClickElement("id","menu-135");
+    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "APPLYONTOPPACKAGE" :
     		WebCommon.ClickElement("id","menu-136");
+    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "CANCLEONTOPPACKAGE" :
     		WebCommon.ClickElement("id","menu-108");
+    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
+    	default : LogManager.addStep("SelectSubMenu","cannot found submenu : "+SubMenu,"","fail","");
     	}
     }
 }
