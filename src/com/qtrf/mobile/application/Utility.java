@@ -167,7 +167,7 @@ public class Utility extends Miscellaneous {
 				MOBILE.capabilitiesList.get(udid).setCapability("appWaitActivity", appWaitActivity);	
 			}
 		
-	    String url = "http://127.0.0."+(index+1)+":"+(4723+index)+"/wd/hub";
+	    String url = "http://127.0.0.1:"+(4725+index)+"/wd/hub";
 	    	      
 	    String startTime = getCurrentSec();
 	    

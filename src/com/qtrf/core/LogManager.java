@@ -50,7 +50,7 @@ public class LogManager extends Miscellaneous{
 		reportLog.add("<table>");    
 		reportLog.add("<tr>");     
 		reportLog.add("<th>");		     
-		reportLog.add("<p>สวัสดีชาวโลก : "+runName+"</p>");  
+		reportLog.add("<p>Run Name : "+runName+"</p>");  
 		reportLog.add("<p>Test Script : "+testScript+"</p>");
 		reportLog.add("<p>User Id : "+userID+"</p>");
 		reportLog.add("<p>Execution Start Time : "+getCurrentTimeDate()+"</p>");
