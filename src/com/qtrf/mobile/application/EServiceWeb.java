@@ -19,14 +19,14 @@ public class EServiceWeb extends EServiceWeb_Repository{
     	case "OPENESERVICEPAGE" : 
     		eServicePage();
     		break;
-    	case "INPUTOPT" :
+    	case "INPUTOTP" :
     		setOTP(parameter);
     		break;
     	case "VERIFYLOGIN" :
     		VerifyLogin(parameter);
     		break;
     	case "SELECTMENU" :
-    		SelctMenu(parameter);
+    		SelectMenu(parameter);
     		break;
     	case "SELECTLANGUAGE" : 
     		SelectLanguage(parameter[0]);
@@ -59,7 +59,7 @@ public class EServiceWeb extends EServiceWeb_Repository{
 		WebCommon.driver.switchTo().frame(WebCommon.driver.findElement(By.id("MainIframe")));
 		LogManager.addStep("OpenEserviceWeb","eservice.ais.co.th/eServiceWeb","","pass","");
     }
-    private static void SelctMenu(String[] parameter){
+    private static void SelectMenu(String[] parameter){
     	String Menu = parameter[0];
     	switch(Menu.toUpperCase()) {
     	case "MAINPAGE" : 

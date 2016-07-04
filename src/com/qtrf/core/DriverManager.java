@@ -12,7 +12,7 @@ public class DriverManager {
 	@Before
 	public void setUp() {
 		
-		LogManager.generateLog("QTRF Framework","PoC","Atlas");
+		LogManager.generateLog("QTRF Framework","PoC","Arcadia.Atlas");
 		
 		Environment.setValue("testCasePath","D:\\TestCase.xlsx");
 		Environment.setValue("configPath","D:\\Config.xlsx");

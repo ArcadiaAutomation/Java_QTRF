@@ -41,6 +41,14 @@ public class WebCommon {
 	    	case "SELECTDROPDOWN" :
 	    		SelectDropDown(parameter[0],parameter[1],parameter[2]);
 	    		break;
+	    	case "ISEXISTS" :
+	    		if (elementIsExists(parameter[0],parameter[1])){
+	    			
+	    		}
+	    		else {
+	    			
+	    		}
+	    		break;
 	    	default : System.out.println("Action not found");
 	    	}
 	    }
@@ -191,6 +199,27 @@ public class WebCommon {
 	    		driver.findElement(By.xpath(value)).click();
 				break;
 	    	default : System.out.println("Action not found");
+	    	}
+		}
+	    public static boolean elementIsExists(String type, String value) {
+			// TODO Auto-generated method stub
+	    	switch(type.toUpperCase()) {
+	    	case "ID" : 
+	    		return driver.findElement(By.id(value)).isDisplayed();
+	    	case "NAME" : 
+	    		return driver.findElement(By.name(value)).isDisplayed();
+	    	case "LINK TEXT" : 
+	    		return driver.findElement(By.linkText(value)).isDisplayed();
+	    	case "TAG NAME" : 
+	    		return driver.findElement(By.tagName(value)).isDisplayed();
+	    	case "CLASS" : 
+	    		return driver.findElement(By.className(value)).isDisplayed();
+	    	case "CSS" : 
+	    		return driver.findElement(By.cssSelector(value)).isDisplayed();
+	    	case "XPATH" : 
+	    		return driver.findElement(By.xpath(value)).isDisplayed();
+	    	default : System.out.println("Action not found");
+	    		return false;
 	    	}
 		}
 }
