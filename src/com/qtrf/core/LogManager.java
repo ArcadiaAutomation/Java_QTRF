@@ -19,8 +19,6 @@ public class LogManager extends Miscellaneous{
 		reportLog.add("<html>");
 		reportLog.add("<head>");
 		reportLog.add("<meta http-equiv=\"Content-Language\" content=\"th\">");
-		reportLog.add("<meta http-equiv=\"content-Type\" content=\"text/html; charset=window-874\">");
-		reportLog.add("<meta http-equiv=\"content-Type\" content=\"text/html; charset=tis-620\">");
 		reportLog.add("<meta http-equiv=\"content-Type\" content=\"text/html; charset=UTF-8\">");
 		reportLog.add("</head>");
 		reportLog.add("<Style>");  
