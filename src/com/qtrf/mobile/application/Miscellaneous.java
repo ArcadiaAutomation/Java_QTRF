@@ -34,9 +34,30 @@ public class Miscellaneous {
 		return dateFormat.format(timeDate);
 	}
 	
+	public static String getCurrentMilSec()
+	{
+		DateFormat dateFormat = new SimpleDateFormat("SSS");
+		Date timeDate = new Date();	
+		return dateFormat.format(timeDate);
+	}
+	
 	public static String getCurrentSec()
 	{
 		DateFormat dateFormat = new SimpleDateFormat("ss");
+		Date timeDate = new Date();	
+		return dateFormat.format(timeDate);
+	}
+	
+	public static String getCurrentMin()
+	{
+		DateFormat dateFormat = new SimpleDateFormat("mm");
+		Date timeDate = new Date();	
+		return dateFormat.format(timeDate);
+	}
+	
+	public static String getCurrentHour()
+	{
+		DateFormat dateFormat = new SimpleDateFormat("HH");
 		Date timeDate = new Date();	
 		return dateFormat.format(timeDate);
 	}

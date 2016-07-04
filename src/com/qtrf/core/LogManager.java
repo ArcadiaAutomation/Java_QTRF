@@ -11,10 +11,17 @@ import com.qtrf.mobile.application.*;
 public class LogManager extends Miscellaneous{
 
 	public static ArrayList<String> reportLog = new ArrayList<String>();
-	
+	public static long startExecuteTime;
+	public static long stopExecuteTime;
 	public static void generateLog(String runName,String testScript,String userID)
 	{
+		startExecuteTime =System.currentTimeMillis();
 		reportLog.add("<html>");
+		reportLog.add("<head>");
+		reportLog.add("<meta http-equiv=\"Content-Language\" content=\"th\">");
+		reportLog.add("<meta http-equiv=\"content-Type\" content=\"text/html; charset=window-874\">");
+		reportLog.add("<meta http-equiv=\"content-Type\" content=\"text/html; charset=tis-620\">");
+		reportLog.add("</head>");
 		reportLog.add("<Style>");  
 		reportLog.add("body{}");
 		reportLog.add("table{width:100%;}"); 
@@ -43,7 +50,7 @@ public class LogManager extends Miscellaneous{
 		reportLog.add("<table>");    
 		reportLog.add("<tr>");     
 		reportLog.add("<th>");		     
-		reportLog.add("<p>Run Name : "+runName+"</p>");  
+		reportLog.add("<p>สวัสดีชาวโลก : "+runName+"</p>");  
 		reportLog.add("<p>Test Script : "+testScript+"</p>");
 		reportLog.add("<p>User Id : "+userID+"</p>");
 		reportLog.add("<p>Execution Start Time : "+getCurrentTimeDate()+"</p>");
@@ -77,7 +84,24 @@ public class LogManager extends Miscellaneous{
 	
 	public static void closeLog()
 	{
+		stopExecuteTime =System.currentTimeMillis();
+		
+		double runtime = (stopExecuteTime - startExecuteTime)/1000.0;
+		int minute = (int) Math.floor(runtime/60.0);
+		int second = Math.floorMod((int)runtime, 60);
+		
+		reportLog.add("<div class=\"header\">");
 		reportLog.add("</table>");
+		reportLog.add("<table>");
+		reportLog.add("<tr>");
+		reportLog.add("<th>");
+		reportLog.add("Execute time : "+minute+" minute "+second+" second");
+		reportLog.add("</thh>");
+		reportLog.add("</tr>");
+		reportLog.add("</table>");
+		reportLog.add("</div>");
+		
+		
 		reportLog.add("</div>");
 		reportLog.add("</body>");
 		reportLog.add("</html>");	

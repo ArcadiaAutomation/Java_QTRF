@@ -55,7 +55,7 @@ public class MOBILE extends Utility{
 		System.out.println("Start appium node number : "+count);
 		udidMap.put(udid, count);
 	    try {
-			Runtime.getRuntime().exec("cmd.exe /c \"start node appium -p "+(4723+count)+" -a 127.0.0."+(count+1)+" --session-override\"",null,dir);
+			Runtime.getRuntime().exec("cmd.exe /c \"start node appium -p "+(4725+count)+" -a 127.0.0.1 --session-override\"",null,dir);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -17,7 +17,7 @@ public class Executor {
 			}
 		}
 	}
-	
+		
 	public static boolean applicationMapping(ArrayList<String> testStep)
 	{
 		switch(testStep.get(1).toUpperCase())

@@ -43,7 +43,10 @@ public class ME_IN_ALLFORONE_Repository extends Utility {
 		typeTable.put("verifyEservice", "text");	
 		table.put("progressBar","Loading");
 		typeTable.put("progressBar", "text");	
-		
+		table.put("innerEService","eService");
+		typeTable.put("innerEService", "text");
+		table.put("innerMyProfile","My Profile");
+		typeTable.put("innerMyProfile", "text");
 	}
 	
 }
