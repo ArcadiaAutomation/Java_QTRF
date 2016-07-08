@@ -2,6 +2,8 @@ package com.qtrf.core;
 
 import org.junit.runner.JUnitCore;
 
+import com.qtrf.mobile.application.DriverManager;
+
 public class Action1 {
 
 	public static void main(String[] args) {
