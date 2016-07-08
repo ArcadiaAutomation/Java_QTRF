@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.qtrf.mobile.application.*;
 
 public class LogManager extends Miscellaneous{
 

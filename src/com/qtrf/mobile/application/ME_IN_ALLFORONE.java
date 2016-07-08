@@ -10,7 +10,6 @@ import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
 import com.qtrf.core.Iteration;
 import com.qtrf.core.LogManager;
-import com.qtrf.core.Executor;
 
 
 

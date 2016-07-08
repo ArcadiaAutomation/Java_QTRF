@@ -3,7 +3,6 @@ package com.qtrf.mobile.application;
 import com.qtrf.core.LogManager;
 import io.appium.java_client.android.AndroidKeyCode;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Executor;
 import com.qtrf.core.Config;
 import com.qtrf.core.Iteration;
 
