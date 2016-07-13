@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Executor;
 import com.qtrf.core.TestStep;
 //import com.qtrf.core.LogManager;
 import com.qtrf.mobile.application.WebCommon;

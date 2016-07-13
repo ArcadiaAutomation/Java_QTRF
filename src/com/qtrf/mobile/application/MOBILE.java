@@ -11,9 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.DriverManagerParallel;
-import com.qtrf.core.DriverManager;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Executor;
 import com.qtrf.core.Iteration;
 import com.qtrf.core.Logger;
 import com.qtrf.core.TestStep;

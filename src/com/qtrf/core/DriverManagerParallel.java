@@ -8,6 +8,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.annotations.AfterTest;
 
+import com.qtrf.mobile.application.Executor;
 import com.qtrf.mobile.application.MOBILE;;
 
 public class DriverManagerParallel {

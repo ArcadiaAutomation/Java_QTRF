@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [TestSuite]" parallel="tests">
+  <parameter name="testCaseDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\TestCase2.xlsx"/>
+  <parameter name="parallel" value="true"/>
+  <parameter name="runName" value="T2"/>
+  <parameter name="configDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\Config2.xlsx"/>
+  <parameter name="logDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\ReportLog2.html"/>
+  <test name="run on device 2(failed)" parallel="tests">
+    <parameter name="testCaseDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\TestCase2.xlsx"/>
+    <parameter name="parallel" value="true"/>
+    <parameter name="runName" value="T2"/>
+    <parameter name="configDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\Config2.xlsx"/>
+    <parameter name="logDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\ReportLog2.html"/>
+    <classes>
+      <class name="com.qtrf.core.DriverManagerParallel">
+        <methods>
+          <include name="test" invocation-numbers="0"/>
+          <include name="setUp"/>
+          <include name="setUp"/>
+          <include name="report"/>
+          <include name="report"/>
+        </methods>
+      </class> <!-- com.qtrf.core.DriverManagerParallel -->
+    </classes>
+  </test> <!-- run on device 2(failed) -->
+</suite> <!-- Failed suite [TestSuite] -->

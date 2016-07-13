@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
-import com.qtrf.core.Executor;
 import com.qtrf.core.TestStep;
 
 import io.appium.java_client.android.AndroidDriver;
