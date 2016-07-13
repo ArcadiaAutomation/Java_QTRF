@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="TestSuite" parallel="tests">
+	<!-- <listeners> <listener class-name="org.uncommons.reportng.HTMLReporter" 
+		/> <listener class-name="org.uncommons.reportng.JUnitXMLReporter" /> </listeners> -->	    
+		<test name="run on device 1">
+			<classes>
+			    <parameter name="parallel" value="true" />
+			    <parameter name="runName" value="T1" />
+			    <parameter name="testCaseDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\TestCase1.xlsx" />
+			    <parameter name="configDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\Config1.xlsx" />
+			    <parameter name="logDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\ReportLog1.html" />
+				<class name="com.qtrf.core.DriverManagerParallel">
+				</class>
+			</classes>
+		</test>
+
+		<test name="run on device 2">
+			<classes>
+			    <parameter name="parallel" value="true" />
+			    <parameter name="runName" value="T2" />
+			    <parameter name="testCaseDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\TestCase2.xlsx" />
+			    <parameter name="configDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\Config2.xlsx" />
+			    <parameter name="logDir" value="C:\\Users\\User\\Desktop\\ForTestParallel\\ReportLog2.html" />
+				<class name="com.qtrf.core.DriverManagerParallel">			    
+				</class>
+			</classes>
+		</test>
+		
+</suite>
