@@ -15,18 +15,25 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelManager {
 	
-		public static ArrayList<ArrayList<String>> getArray(String path,String sheetName)
+	 	private String runName;
+	
+	 	public ExcelManager(String runName)
+	 	{
+	 		this.runName=runName;
+	 	}
+	 	
+		public ArrayList<ArrayList<String>> getArray(String path,String sheetName)
 		{
 			FileInputStream file = null;
 			XSSFWorkbook workbook = null;
 			
 			try {
 				file = new FileInputStream(new File(path));
-				LogManager.addStep("Read file : "+path, "File exist", "File exist", "pass", "");
-				LogManager.generateHTML();
+				LogManager.logTable.get(runName).addStep("Read file : "+path, "File exist", "File exist", "pass", "");
+				LogManager.logTable.get(runName).generateHTML();
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-				LogManager.addStep("Read file : "+path, "File exist", e.toString(), "fail", "");
+				LogManager.logTable.get(runName).addStep("Read file : "+path, "File exist", e.toString(), "fail", "");
 			}
 			
 			try {
@@ -41,7 +48,7 @@ public class ExcelManager {
 			return data;
 		}
 		
-		public static int getSheetIndex(XSSFWorkbook workbook,String name)
+		public int getSheetIndex(XSSFWorkbook workbook,String name)
 		{
 			int count = -1;
 			Iterator<Sheet> sheetIterator = workbook.iterator();
@@ -58,7 +65,7 @@ public class ExcelManager {
 			return -1;
 		}
 		
-		public static int numRow(Iterator<Row> i)
+		public int numRow(Iterator<Row> i)
 		{
 			int count = 0;
 			for (Iterator<Row> j = i;j.hasNext();)
@@ -69,7 +76,7 @@ public class ExcelManager {
 			return count;
 		}
 		
-		public static int numCell(Iterator<Cell> i)
+		public int numCell(Iterator<Cell> i)
 		{
 			int count = 0;
 			for (Iterator<Cell> j = i;j.hasNext();)
@@ -80,7 +87,7 @@ public class ExcelManager {
 			return count;
 		}	
 		
-		public static ArrayList<ArrayList<String>> readTestCase(XSSFSheet sheet)
+		public ArrayList<ArrayList<String>> readTestCase(XSSFSheet sheet)
 		{
 			ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
 			for (Iterator<Row> i = sheet.iterator();i.hasNext();)
@@ -99,7 +106,7 @@ public class ExcelManager {
 			return data;
 		}
 		
-		public static boolean isSheetExist(String path,String sheetName)
+		public boolean isSheetExist(String path,String sheetName)
 		{
 			FileInputStream file = null;
 			XSSFWorkbook workbook = null;

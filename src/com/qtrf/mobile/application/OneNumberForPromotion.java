@@ -1,52 +1,77 @@
 package com.qtrf.mobile.application;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
+import com.qtrf.core.Config;
+import com.qtrf.core.DriverManagerParallel;
+import com.qtrf.core.Environment;
+import com.qtrf.core.Executor;
 import com.qtrf.core.LogManager;
+import com.qtrf.core.Logger;
+import com.qtrf.core.TestStep;
+
+import static org.testng.AssertJUnit.fail;
 
 public class OneNumberForPromotion extends OneNumberForPromotion_Repository {
-	static String[] parameter;
-	static String udid;
-	WebCommon webCommon = new WebCommon();
+	
+	String runName;
+	String[] parameter;
+	String udid;
+	Executor executor;
+	Config config;
+	Environment environment;
+	WebCommon webCommon;
+	Utility utility;
+	OneNumberForPromotion_Repository selfRepository = new OneNumberForPromotion_Repository();
+	Repository repository = new Repository(selfRepository.table,selfRepository.typeTable);
 
-    public static void actionMapper(ArrayList<String> testStep)
+	public OneNumberForPromotion(String runName,Config config,Environment environment)
+	{
+		this.runName=runName;
+		this.config=config;
+		this.environment=environment;
+		executor = new Executor(runName);
+		utility = new Utility(runName,config,environment);
+		webCommon = new WebCommon(runName,config,environment);
+	}
+	
+    public void actionMapper(TestStep testStep)
     {
-    	parameter = Utility.getParameter(testStep.get(4));
-    	OneNumberForPromotion_Repository.ini();
-    	String Action = testStep.get(3);
+    	parameter = utility.getParameter(testStep.parameter);
+    	String Action = testStep.action;
     	switch(Action.toUpperCase())
     	{
     	case "SELECTSUBMENU" : 
     		SelectSubMenu(parameter[0]);
     		break;
-    	default : WebCommon.actionMapper(testStep);
+    	default : webCommon.actionMapper(testStep);
     	}
     }
-    public static void Setup(){
-    	OneNumberForPromotion_Repository.ini();
-    	WebCommon.ClickElement(OneNumberForPromotion_Repository.typeTable.get("Menu"),OneNumberForPromotion_Repository.table.get("Menu"));
+    public void Setup(){
+    	webCommon.ClickElement(typeTable.get("Menu"),table.get("Menu"));
     }
     
-    public static void SelectSubMenu(String SubMenu){
+    public void SelectSubMenu(String SubMenu){
        	switch(SubMenu.toUpperCase())
     	{
     	case "YOURCURRENTPACKAGE" : 
-    		WebCommon.ClickElement("id","menu-83");
-    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
+    		webCommon.ClickElement("id","menu-83");
+    		LogManager.logTable.get(runName).addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "CHANGEMAINPACKAGE" :
-    		WebCommon.ClickElement("id","menu-135");
-    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
+    		webCommon.ClickElement("id","menu-135");
+    		LogManager.logTable.get(runName).addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "APPLYONTOPPACKAGE" :
-    		WebCommon.ClickElement("id","menu-136");
-    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
+    		webCommon.ClickElement("id","menu-136");
+    		LogManager.logTable.get(runName).addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
     	case "CANCLEONTOPPACKAGE" :
-    		WebCommon.ClickElement("id","menu-108");
-    		LogManager.addStep("SelectSubMenu",SubMenu,"","pass","");
+    		webCommon.ClickElement("id","menu-108");
+    		LogManager.logTable.get(runName).addStep("SelectSubMenu",SubMenu,"","pass","");
     		break;
-    	default : LogManager.addStep("SelectSubMenu","cannot found submenu : "+SubMenu,"","fail","");
+    	default : LogManager.logTable.get(runName).addStep("SelectSubMenu","cannot found submenu : "+SubMenu,"","fail","");
     	}
     }
 }

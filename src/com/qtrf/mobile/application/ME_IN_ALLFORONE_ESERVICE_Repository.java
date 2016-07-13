@@ -2,10 +2,10 @@ package com.qtrf.mobile.application;
 
 import java.util.Hashtable;
 
-public class ME_IN_ALLFORONE_ESERVICE_Repository extends Utility {
-	public static Hashtable<String,String> table = new Hashtable<String,String>();
-	public static Hashtable<String,String> typeTable = new Hashtable<String,String>();
-	public static void ini()
+public class ME_IN_ALLFORONE_ESERVICE_Repository {
+	Hashtable<String,String> table = new Hashtable<String,String>();
+	Hashtable<String,String> typeTable = new Hashtable<String,String>();
+	public ME_IN_ALLFORONE_ESERVICE_Repository()
 	{
 		table.put("myProfile", "My Profile");
 		typeTable.put("myProfile", "text");
@@ -39,6 +39,26 @@ public class ME_IN_ALLFORONE_ESERVICE_Repository extends Utility {
 		typeTable.put("topUp", "text");
 		table.put("balance&ValidityTransfer", "Balance & Validity Transfer");
 		typeTable.put("balance&ValidityTransfer", "text");
+	 	 	table.put("balanceTransfer", "• Balance Transfer");
+	 	 	typeTable.put("balanceTransfer", "text");	
+	 	 	 	table.put("verifyBalanceTransfer", "Balance Transfer");
+	 	 	 	typeTable.put("verifyBalanceTransfer", "text");
+	 			table.put("mobileNumber","com.ais.mimo.eservice:id/et_trans_tel");
+	 			typeTable.put("mobileNumber", "id");
+	 			table.put("selectBaht","Select Baht");
+	 			typeTable.put("selectBaht", "text");
+	 			table.put("10","10");
+	 			typeTable.put("10", "text"); 	 			
+	 			table.put("20","20");
+	 			typeTable.put("20", "text"); 	
+	 			table.put("OK","OK");
+	 			typeTable.put("OK", "text"); 
+	 			table.put("YES","com.ais.mimo.eservice:id/btn_positive");
+	 			typeTable.put("YES", "id"); 
+	 	 	 	table.put("successBalanceTransfer", "Transaction processed successfully.  Please wait for a confirmation SMS.");
+	 	 	 	typeTable.put("successBalanceTransfer", "text");
+	 	 	table.put("validityTransfer", "• Validity Transfer");
+	 	 	typeTable.put("validityTransfer", "text");	 	 		
 		table.put("faq", "FAQ");
 		typeTable.put("faq", "text");
 		table.put("applyPackage", "Apply Package");

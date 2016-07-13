@@ -4,16 +4,23 @@ import java.util.ArrayList;
 
 public class TestCase {
 	
-	private static ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
+	private String runName;
+	private ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
+	ExcelManager excelManager;
 	
-	public static void readTestCase(String testCasePath,String sheetName)
+	public void  readTestCase(String testCasePath,String sheetName)
 	{
-		table = ExcelManager.getArray(testCasePath,sheetName);
+		table = excelManager.getArray(testCasePath,sheetName);
 	}
 	
-	public static ArrayList<ArrayList<String>> getTestCase()
+	public ArrayList<ArrayList<String>> getTestCase()
 	{
 		return table;
 	}
 	
+	public TestCase(String runName)
+	{
+		this.runName=runName;
+		excelManager = new ExcelManager(runName);
+	}
 }

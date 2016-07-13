@@ -3,28 +3,51 @@ package com.qtrf.mobile.application;
 import io.appium.java_client.android.AndroidKeyCode;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import org.openqa.selenium.By;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.Environment;
+import com.qtrf.core.Executor;
 import com.qtrf.core.Iteration;
-import com.qtrf.core.LogManager;
+import com.qtrf.core.Logger;
+import com.qtrf.core.TestStep;
+
+import com.qtrf.core.DriverManagerParallel;
+import com.qtrf.core.DriverManager;
+
+import static org.testng.AssertJUnit.fail;
 
 public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
 
-	static String[] parameter;
-	static String udid;	
+	String runName;
+	String[] parameter;
+	String udid;
+	Executor executor;
+	Config config;
+	Environment environment;
+	Utility utility;
+	ME_WIFICONNECT_Repository selfRepository = new ME_WIFICONNECT_Repository();
+	Repository repository = new Repository(selfRepository.table,selfRepository.typeTable);
 	
-    public static void actionMapper(ArrayList<String> testStep)
+	public ME_WIFICONNECT(String runName,Config config,Environment environment)
+	{
+		this.runName=runName;
+		this.config=config;
+		this.environment=environment;
+		executor = new Executor(runName);
+		utility = new Utility(runName,config,environment);
+	}
+	
+    public void actionMapper(TestStep testStep)
     {
-    	parameter = Utility.getParameter(testStep.get(4));
-    	udid = getUdid(testStep.get(2));    	
-    	ME_WIFICONNECT_Repository.ini();
+    	parameter = utility.getParameter(testStep.parameter);
+    	udid = utility.getUdid(testStep.machine);    	
     	
-    	switch(testStep.get(3).toUpperCase())
+    	switch(testStep.action.toUpperCase())
     	{
-    	case "OPENAPP" : openApp(testStep,table.get("package"),table.get("activity"),table.get("waitActivity"));
+    	case "OPENAPP" : utility.openApp(udid,table.get("package"),table.get("activity"),table.get("waitActivity"));
     	break;
     	case "SETENABLEWIFI" : 
     		if (!isWifiOpen())
@@ -44,22 +67,19 @@ public class ME_WIFICONNECT extends ME_WIFICONNECT_Repository{
     	}    			
     }
 	
-	private static boolean waitUntil(ArrayList<String> testStep)
+	private boolean waitUntil(TestStep testStep)
 	{
-		String udid = getUdid(testStep.get(2));
-		String[] parameter = Utility.getParameter(testStep.get(4));
-		
-		return Utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
+		return utility.waitUntil(parameter, udid, table.get(parameter[1]), typeTable.get(parameter[1]));
 	}
 	
 	
-	public static boolean isWifiOpen()
+	public boolean isWifiOpen()
 	{
 		return MOBILE.driverList.get(udid).findElement(By.id(table.get("wifiToggle"))).getAttribute("checked").equals("true");
 	}
 	
 	
-	public static boolean verifyWifi()
+	public boolean verifyWifi()
 	{
 			if (parameter[0].toUpperCase().equals("ENABLE"))
 			{

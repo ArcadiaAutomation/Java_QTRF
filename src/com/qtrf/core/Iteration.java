@@ -4,20 +4,29 @@ import java.util.ArrayList;
 
 public class Iteration {
 
-	private static ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
+	String runName;
+	ExcelManager excelManager;
 	
-	public static boolean isIteration(String path,String sheetName)
+	private ArrayList<ArrayList<String>> table = new ArrayList<ArrayList<String>>();
+	
+	public boolean isIteration(String path,String sheetName)
 	{
-		return ExcelManager.isSheetExist(path,sheetName);
+		return excelManager.isSheetExist(path,sheetName);
 	}
 	
-	public static void readIteration(String testCasePath,String sheetName)
+	public void readIteration(String testCasePath,String sheetName)
 	{
-		table = ExcelManager.getArray(testCasePath,sheetName);
+		table = excelManager.getArray(testCasePath,sheetName);
 	}
 	
-	public static ArrayList<ArrayList<String>> getIteration()
+	public ArrayList<ArrayList<String>> getIteration()
 	{
 		return table;
+	}
+	
+	public Iteration(String runName)
+	{
+		this.runName=runName;
+		excelManager = new ExcelManager(runName);
 	}
 }

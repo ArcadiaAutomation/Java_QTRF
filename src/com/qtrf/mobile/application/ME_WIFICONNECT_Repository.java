@@ -2,11 +2,11 @@ package com.qtrf.mobile.application;
 
 import java.util.Hashtable;
 
-public class ME_WIFICONNECT_Repository extends Utility{
+public class ME_WIFICONNECT_Repository {
 
-	public static Hashtable<String,String> table = new Hashtable<String,String>();
-	public static Hashtable<String,String> typeTable = new Hashtable<String,String>();
-	public static void ini()
+	Hashtable<String,String> table = new Hashtable<String,String>();
+	Hashtable<String,String> typeTable = new Hashtable<String,String>();
+	public ME_WIFICONNECT_Repository()
 	{
 		table.put("package", "jksta.wifiportal");
 		table.put("activity", "jksta.wifitool.MainActivity");

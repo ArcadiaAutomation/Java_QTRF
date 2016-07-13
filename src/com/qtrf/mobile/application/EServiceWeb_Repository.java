@@ -3,11 +3,11 @@ package com.qtrf.mobile.application;
 
 import java.util.Hashtable;
 
-public class EServiceWeb_Repository extends Utility{
+public class EServiceWeb_Repository {
 
-	public static Hashtable<String,String> table = new Hashtable<String,String>();
-	public static Hashtable<String,String> typeTable = new Hashtable<String,String>();
-	public static void ini()
+	Hashtable<String,String> table = new Hashtable<String,String>();
+	Hashtable<String,String> typeTable = new Hashtable<String,String>();
+	public EServiceWeb_Repository()
 	{
 		table.put("package", "jksta.wifiportal");
 		table.put("activity", "jksta.wifitool.MainActivity");

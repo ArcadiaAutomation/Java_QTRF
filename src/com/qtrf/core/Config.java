@@ -5,19 +5,28 @@ import java.util.Hashtable;
 
 public class Config {
 
-	public static Hashtable<String, String> table= new Hashtable<String, String>();
+	String runName;
+	public Hashtable<String, String> table= new Hashtable<String, String>();
+	ExcelManager excelManager;
 	
-	public static void readConfig(String configPath,String sheetName)
+	public Config(String runName)
 	{
-		ArrayList<ArrayList<String>> arr = ExcelManager.getArray(configPath,sheetName);
+		this.runName=runName;
+		excelManager = new ExcelManager(runName);
+	}
+	
+	public void readConfig(String configPath,String sheetName)
+	{
+		ArrayList<ArrayList<String>> arr = excelManager.getArray(configPath,sheetName);
 		for (int i=1;i<arr.size();i++)
 		{
 			table.put(arr.get(i).get(1), arr.get(i).get(2));
 		}
 	}
 	
-	public static Hashtable<String, String> getConfig()
+	public Hashtable<String, String> getConfig()
 	{
 		return table;
 	}
+
 }

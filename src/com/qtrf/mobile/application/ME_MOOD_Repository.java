@@ -2,11 +2,11 @@ package com.qtrf.mobile.application;
 
 import java.util.Hashtable;
 
-public class ME_MOOD_Repository extends Utility {
+public class ME_MOOD_Repository {
 
-	public static Hashtable<String,String> table = new Hashtable<String,String>();
-	public static Hashtable<String,String> typeTable = new Hashtable<String,String>();
-	public static void ini()
+	Hashtable<String,String> table = new Hashtable<String,String>();
+	Hashtable<String,String> typeTable = new Hashtable<String,String>();
+	public ME_MOOD_Repository()
 	{
 		table.put("package", "com.calea.echo");
 		table.put("activity", "com.calea.echo.MainActivity");

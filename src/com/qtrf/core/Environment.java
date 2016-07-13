@@ -6,15 +6,15 @@ import java.nio.*;
 
 public class Environment {
 	
-	private static Hashtable<String, String> table= new Hashtable<String, String>();
+	public Hashtable<String, String> table= new Hashtable<String, String>();
 	
-	public static void setValue(String key,String value)
+	public void setValue(String key,String value)
 	{
 		table.put(key,value);
 	}
 	
-	public static String getValue (String key)
+	public String getValue (String key)
 	{
 		return table.get(key);
-	}		
+	}	
 }
