@@ -20,6 +20,16 @@ public class Miscellaneous {
 			 }
 	}
 	
+	public static void wait(float second)
+	{
+		 try {
+			  	System.out.println("wait for "+second+" second");
+				Thread.sleep((long)second*1000);				
+			 } catch (InterruptedException e) {
+				e.printStackTrace();
+			 }
+	}
+	
 	public static String getCurrentTimeDate()
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

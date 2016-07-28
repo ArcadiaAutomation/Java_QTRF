@@ -109,6 +109,8 @@ public class Executor {
 		break;		
 		case "ME_WIFICONECT" : ME_WIFICONNECT mWifiConnect = new ME_WIFICONNECT(runName,config,environment);mWifiConnect.actionMapper(testStep);
 		break;		
+		case "BIZLIVE" : BIZLIVE bizLive = new BIZLIVE(runName,config,environment);bizLive.actionMapper(testStep);
+		break;		
 //		case "ESRVICEWEB"	: EServiceWeb.actionMapper(testStep);
 //		break;
 //		case "ONENUMBERFORSERVICE" : OneNumberForPromotion.actionMapper(testStep);

@@ -21,8 +21,6 @@ import io.appium.java_client.android.AndroidDriver;
 public class MOBILE{
 
 	String runName;
-	String[] parameter;
-	String udid;
 	Executor executor;
 	Config config;
 	Environment environment;

@@ -88,7 +88,7 @@ public class DriverManager {
 		Iteration iteration = new Iteration(runName);
 		Environment environment = new Environment();
 		
-		environment.setValue("testCasePath","D:\\TestCase.xlsx");
+		environment.setValue("testCasePath","D:\\TestCaseBizLive\\Testcase_Report SMS Campaign Result_P2_2.xlsx");
 		//environment.setValue("testCasePath",testCaseDir);
 		environment.setValue("configPath","D:\\Config.xlsx");
 		//environment.setValue("configPath",configDir);

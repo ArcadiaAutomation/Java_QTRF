@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Hashtable;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.qtrf.core.Config;
 import com.qtrf.core.DriverManagerParallel;
@@ -190,9 +191,60 @@ public class Utility {
 		case "class" : MOBILE.driverList.get(udid).findElementByClassName(path).click();Miscellaneous.wait(2);
 		break;
 		case "css" : MOBILE.driverList.get(udid).findElementByCssSelector(path).click();Miscellaneous.wait(2);
+		break;
 		default: System.out.println("Element not found");
 		}
 	}
+	
+	public WebElement getComponent(String udid,String path,String findOption)
+	{
+    	WebElement result = null;
+    	
+		switch(findOption)
+		{
+		case "id" : result = MOBILE.driverList.get(udid).findElementById(path);Miscellaneous.wait(2);
+		break;
+		case "xpath" : result = MOBILE.driverList.get(udid).findElementByXPath(path);Miscellaneous.wait(2);
+		break;
+		case "text" : result = MOBILE.driverList.get(udid).findElementByName(path);Miscellaneous.wait(2);
+		break;
+		case "class" : result = MOBILE.driverList.get(udid).findElementByClassName(path);Miscellaneous.wait(2);
+		break;
+		case "css" : result = MOBILE.driverList.get(udid).findElementByCssSelector(path);Miscellaneous.wait(2);
+		break;
+		default: System.out.println("Element not found");
+		}
+		
+		return result;
+	}
+	
+	public WebElement getComponent(TestStep testStep,Repository repository)
+	{
+    	String[] parameter = getParameter(testStep.parameter);
+    	String udid = getUdid(testStep.machine);
+    	String path = repository.table.get(parameter[0]);
+    	String findOption = repository.typeTable.get(parameter[0]);
+    	WebElement result = null;
+    	
+		switch(findOption)
+		{
+		case "id" : result = MOBILE.driverList.get(udid).findElementById(path);Miscellaneous.wait(2);
+		break;
+		case "xpath" : result = MOBILE.driverList.get(udid).findElementByXPath(path);Miscellaneous.wait(2);
+		break;
+		case "text" : result = MOBILE.driverList.get(udid).findElementByName(path);Miscellaneous.wait(2);
+		break;
+		case "class" : result = MOBILE.driverList.get(udid).findElementByClassName(path);Miscellaneous.wait(2);
+		break;
+		case "css" : result = MOBILE.driverList.get(udid).findElementByCssSelector(path);Miscellaneous.wait(2);
+		break;
+		default: System.out.println("Element not found");
+		}
+		
+		return result;
+	}
+	
+	
 	
 	public String getUdid(String parameter)
 	{
